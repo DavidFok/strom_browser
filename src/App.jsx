@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Map from './Map.jsx';
 import Navbar from './Navbar.jsx';
+import Menu from './Menu.jsx';
+import SignUpPage from './SignUpPage.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +37,8 @@ class App extends Component {
       <div>
         <Map parkades={this.state.parkades} />
         <Navbar/>
+        <Menu/>
+        {/* <SignUpPage/> */}
       </div>
     );
   }
