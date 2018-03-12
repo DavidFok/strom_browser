@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Map from './Map.jsx';
 import Navbar from './Navbar.jsx';
-import Login from './Login.jsx';
-import Register from './Register.jsx';
-
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Menu from './Menu.jsx';
+import SignUpPage from './SignUpPage.jsx';
 
 class App extends Component {
   constructor(props) {
