@@ -19,7 +19,12 @@ class App extends Component {
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log(data);
+      switch (data.type) {
+        case "parkadeData":
+        this.setState({ parkades: data.data})
+        // console.log("this is the state parkade data:  ", this.state.parkades);
+        break;
+      }
     }
 
 

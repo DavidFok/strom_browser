@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
+// import {GoogleApiWrapper} from 'google-maps-react';
 
 const MapComponent = ({ text }) => (
   <div style={{
