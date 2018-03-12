@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Map from './Map.jsx';
+import Navbar from './Navbar.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       switch (data.type) {
-        case "parkadeData":
+        case 'parkadeData':
         this.setState({ parkades: data.data});
         // console.log("this is the state parkade data:  ", this.state.parkades);
         break;
@@ -33,6 +34,7 @@ class App extends Component {
     return (
       <div>
         <Map parkades={this.state.parkades} />
+        <Navbar/>
       </div>
     );
   }
