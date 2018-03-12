@@ -1,57 +1,30 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-// import { Card, CardText } from 'material-ui/Card';
-// import RaisedButton from 'material-ui/RaisedButton';
-// import TextField from 'material-ui/TextField';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
-
-const LoginForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  user
-}) => (
-  <div className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Login</h2>
-
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
-
-      <div className="field-line">
-        <input
-          floatingLabelText="Email"
-          name="email"
-          errorText={errors.email}
-          onChange={onChange}
-          value={user.email}
-        />
-      </div>
-
-      <div className="field-line">
-        <input
-          floatingLabelText="Password"
-          type="password"
-          name="password"
-          onChange={onChange}
-          errorText={errors.password}
-          value={user.password}
-        />
-      </div>
-
-      <div className="button-line">
-        <button type="submit" label="Log in" primary />
-      </div>
-
-      {/* <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText> */}
-    </form>
-  </div>
+const LoginForm = () => (
+  <Card>
+    <CardHeader
+      title="Without Avatar"
+      subtitle="Subtitle"
+      actAsExpander={true}
+      showExpandableButton={true}
+    />
+    <CardActions>
+      <FlatButton label="Action1" />
+      <FlatButton label="Action2" />
+    </CardActions>
+    <CardText expandable={true}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+    </CardText>
+  </Card>
 );
 
-// LoginForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   errors: PropTypes.object.isRequired,
-//   user: PropTypes.object.isRequired
-// };
 
 export default LoginForm;
