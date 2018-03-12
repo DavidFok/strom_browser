@@ -29,11 +29,11 @@ class App extends Component {
 
 
   }
-
+  
   render() {
     return (
       <div>
-        <Map/>
+        <Map />
       </div>
     );
   }
