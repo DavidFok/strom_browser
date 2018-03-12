@@ -7,9 +7,11 @@ class Navbar extends Component {
     console.log('Rendering <Navbar/>');
     return (
         <nav className="navbar">
-          <h1 className="icon-menu"> <MdMenu /> </h1>
-          <p className="navbar-text"> Search here </p>
-          <h1 className="icon-search"> <MdSearch /> </h1>
+          <div className="container">
+            <h1 className="icon-menu"> <MdMenu /> </h1>
+            <p className="navbar-text"> Search here </p>
+            <h1 className="icon-search"> <MdSearch /> </h1>
+          </div>
         </nav>
     );
   }

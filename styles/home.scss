@@ -1,3 +1,13 @@
+html {
+  font-size: 5px;
+}
+
+@media (min-width: 576px) {
+  html {
+    font-size: 7px;
+  }
+}
+
 h1 {
   color: tomato;
 }
@@ -19,45 +29,40 @@ body {
 
 .navbar {
   background: white;
-  height: 100px;
+  max-width: 500px;
+  height: 10rem;
   left: 0;
   padding: 0 10px;
   position: fixed;
   right: 0;
   top: 0;
   color: white;
-  margin: 50px;
+  margin: 10rem 3rem 0rem 3rem;
   box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
   border-radius: 5px;
 }
 
+.navbar .container {
+  position: relative;
+  bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 .icon-menu {
   color: grey;
-  font-size: 60px;
-  vertical-align: middle;
-  line-height: 100px;
-  position: fixed;
-  top: -4px;
-  margin-left: 20px;
+  font-size: 6rem;
 }
 
 .icon-search {
   color: grey;
-  font-size: 60px;
-  vertical-align: middle;
-  line-height: 100px;
-  position: fixed;
-  top: -4px;
-  margin-left: 780px;
+  font-size: 6rem;
 }
 
 .navbar-text {
   color: grey;
   font-family: 'Open Sans', sans-serif;
-  font-size: 35px;
-  vertical-align: middle;
-  line-height: 100px;
-  position: fixed;
-  top: 13px;
-  margin-left: 150px;
+  font-size: 3.5rem;
+  padding: 3rem;
+  width: 60%;
 }
