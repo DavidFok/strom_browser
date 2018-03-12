@@ -18,7 +18,7 @@ body {
 }
 
 .navbar {
-  background: whitesmoke;
+  background: white;
   height: 100px;
   left: 0;
   padding: 0 10px;
@@ -29,4 +29,35 @@ body {
   margin: 50px;
   box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
   border-radius: 5px;
+}
+
+.icon-menu {
+  color: grey;
+  font-size: 60px;
+  vertical-align: middle;
+  line-height: 100px;
+  position: fixed;
+  top: -4px;
+  margin-left: 20px;
+}
+
+.icon-search {
+  color: grey;
+  font-size: 60px;
+  vertical-align: middle;
+  line-height: 100px;
+  position: fixed;
+  top: -4px;
+  margin-left: 780px;
+}
+
+.navbar-text {
+  color: grey;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 100px;
+  position: fixed;
+  top: 13px;
+  margin-left: 150px;
 }
