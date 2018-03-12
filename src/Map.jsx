@@ -7,49 +7,26 @@ const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `600px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: 49.397, lng: -123.644 }}
+    defaultZoom={13}
+    defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
+    <Marker position={{ lat: 49.26284100, lng: -123.25540100 }} onClick={props.onMarkerClick} />
   </GoogleMap>
 )
 
-// const MapComponent = ({ text }) => (
-//   <div style={{
-//     position: 'relative', color: 'white', background: 'red',
-//     height: 40, width: 60, top: -20, left: -30,    
-//   }}>
-//     {text}
-//   </div>
-// );
-
 class Map extends Component {
-  // static defaultProps = {
-  //   center: {lat: 59.95, lng: 30.33},
-  //   zoom: 11
-  // };
 
   render() {
     console.log('Rendering <Map/>');
     return (
       <MyMapComponent/>
-      // <Map
-      //   // bootstrapURLKeys={{ key: 'AIzaSyC-3t7jM3faz0mMqg90mIBtEr7YIhwPIoI' }}
-      //   // defaultCenter={this.props.center}
-      //   // defaultZoom={this.props.zoom}
-      // >
-      //   <Marker
-      //     position={{lat: 59.955413, lng: 30.337844}}
-      //     title={'Kreyser Avrora'}
-      //   />
-      // </Map>
     );
   }
 }
