@@ -17,7 +17,6 @@ const MyMapComponent = compose(
     defaultZoom={13}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
-    {console.log(props)}
     {props.parkades.map(function(parkade) {
         return (
           <Marker position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} onClick={props.onMarkerClick} />
