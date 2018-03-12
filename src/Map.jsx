@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { compose, withProps, withHandlers } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { compose, withProps, withHandlers } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `600px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
+    googleMapURL: 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
+    loadingElement: <div style={{ height: '100%' }} />,
+    containerElement: <div style={{ height: '100vh' }} />,
+    mapElement: <div style={{ height: '100%' }} />,
   }),
   withScriptjs,
   withGoogleMap
@@ -43,11 +43,11 @@ class Map extends Component {
     let occupied = parkade.occupied_regular;
     let usage = occupied / parkade.spot_count_regular;
     if (usage < 0.5) {
-      return {icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"};
+      return {icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'};
     } else if (usage < 1) {
-      return {icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"};
+      return {icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
     } else {
-      return {icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"};
+      return {icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'};
     }
   }
 
@@ -60,7 +60,7 @@ class Map extends Component {
   render() {
     console.log('Rendering <Map/>');
     return (
-      <MyMapComponent parkades={this.state.parkades} iconColor={this.iconColor}/>
+      <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor}/>
     );
   }
 }
