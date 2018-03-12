@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { compose, withProps } from "recompose";
+import { compose, withProps, withHandlers } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 const MyMapComponent = compose(
@@ -17,12 +17,13 @@ const MyMapComponent = compose(
     defaultZoom={13}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
+    {console.log(props.parkades)}
     {props.parkades.map(function(parkade) {
         return (
           <Marker 
             position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
             onClick={props.onMarkerClick} 
-            options={{icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}}
+            options={props.iconColor(parkade)}
           />
         )
       })
@@ -38,6 +39,18 @@ class Map extends Component {
     };
   }
   
+  iconColor(parkade) {
+    let occupied = parkade.occupied_regular;
+    let usage = occupied / parkade.spot_count_regular;
+    if (usage < 0.5) {
+      return {icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"};
+    } else if (usage < 1) {
+      return {icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"};
+    } else {
+      return {icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"};
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.parkades !== this.props.parkades) {
       this.setState({parkades: this.props.parkades})
@@ -47,7 +60,7 @@ class Map extends Component {
   render() {
     console.log('Rendering <Map/>');
     return (
-      <MyMapComponent parkades={this.state.parkades} />
+      <MyMapComponent parkades={this.state.parkades} iconColor={this.iconColor}/>
     );
   }
 }
