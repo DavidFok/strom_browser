@@ -4,6 +4,7 @@ import Navbar from './Navbar.jsx';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Menu from './Menu.jsx';
 import SignUpPage from './SignUpPage.jsx';
+import LoginPage from './LoginPage.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -32,8 +33,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path='/login' exact component={Login}/>
-          <Route path='/register' exact component={Register}/>
+          <Route path='/login' exact component={LoginPage}/>
+          <Route path='/register' exact component={SignUpPage}/>
           <Route path='/' exact render={() => {
             return(
               <div>
