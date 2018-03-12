@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Map from './Map.jsx';
 import Navbar from './Navbar.jsx';
+import Login from './Login.jsx';
+import Register from './Register.jsx';
+
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -30,6 +33,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
+          <Route path='/login' exact component={Login}/>
+          <Route path='/register' exact component={Register}/>
           <Route path='/' exact render={() => {
             return(
               <div>
