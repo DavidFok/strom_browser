@@ -17,16 +17,34 @@ const MyMapComponent = compose(
     defaultZoom={13}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
-    <Marker position={{ lat: 49.26284100, lng: -123.25540100 }} onClick={props.onMarkerClick} />
+    {console.log(props)}
+    {props.parkades.map(function(parkade) {
+        return (
+          <Marker position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} onClick={props.onMarkerClick} />
+        )
+      })
+    }
   </GoogleMap>
 )
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parkades: props.parkades
+    };
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.parkades !== this.props.parkades) {
+      this.setState({parkades: this.props.parkades})
+    }
+  }
 
   render() {
     console.log('Rendering <Map/>');
     return (
-      <MyMapComponent/>
+      <MyMapComponent parkades={this.state.parkades} />
     );
   }
 }

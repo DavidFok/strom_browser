@@ -5,7 +5,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 0,
     };
   }
 
@@ -21,7 +20,7 @@ class App extends Component {
       const data = JSON.parse(event.data);
       switch (data.type) {
         case "parkadeData":
-        this.setState({ parkades: data.data})
+        this.setState({ parkades: data.data});
         // console.log("this is the state parkade data:  ", this.state.parkades);
         break;
       }
@@ -33,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map />
+        <Map parkades={this.state.parkades} />
       </div>
     );
   }
