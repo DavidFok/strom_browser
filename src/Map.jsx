@@ -19,7 +19,11 @@ const MyMapComponent = compose(
   >
     {props.parkades.map(function(parkade) {
         return (
-          <Marker position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} onClick={props.onMarkerClick} />
+          <Marker 
+            position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
+            onClick={props.onMarkerClick} 
+            options={{icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}}
+          />
         )
       })
     }
