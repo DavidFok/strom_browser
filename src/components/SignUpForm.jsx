@@ -1,45 +1,89 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-import { Card, CardText } from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
 
+const style = {
+  margin: 12,
+  block: {
+    maxWidth: 350,
+  },
+  toggle: {
+    marginBottom: 16,
+    fontSize: 18,
+  },
+};
 
-const SignUpForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  user,
-}) => (
-  <Card className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Sign Up</h2>
+const SignUpForm = () => (
+  <Card className="signup_form">
 
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+  <h1>Sign Up</h1>
 
-        <TextField
-          floatingLabelText="Name"
-          name="name"
-          errorText={errors.name}
-          onChange={onChange}
-          value={user.name}
-        />
+    <TextField
+    hintText="first name"
+    /><br />
+    <br />
 
+    <TextField
+    hintText="last name"
+    /><br />
+    <br />
 
-      <div className="button-line">
-        <RaisedButton type="submit" label="Create New Account" primary />
-      </div>
+    <TextField
+    hintText="street 1"
+    />
+    <TextField
+    hintText="street 2"
+    /><br />
+    <br />
 
-      <p>Already have an account? <link to={'/login'}>Log in</link></p>
-    </form>
+    <TextField
+    hintText="city"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="province"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="postal code"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="country"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="email"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="password"
+    /><br />
+    <br />
+
+    <TextField
+    hintText="confirm password"
+    /><br />
+    <br />
+
+  <div style={style.block}>
+    <Toggle
+    label="handicap?"
+    style={style.toggle}
+    />
+  </div>
+
+    <RaisedButton label="Submit" primary={true} style={style} />
   </Card>
-);
-
-// SignUpForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   errors: PropTypes.object.isRequired,
-//   user: PropTypes.object.isRequired
-// };
+);  
 
 export default SignUpForm;

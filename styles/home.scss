@@ -9,7 +9,8 @@ html {
 }
 
 h1 {
-  color: tomato;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 25px;
 }
 
 body {
@@ -70,4 +71,11 @@ body {
   max-width: 500px;
   margin: 200px auto;
   padding: 20px;
+}
+
+.signup_form{
+  max-width: 500px;
+  margin: 200px auto;
+  padding: 20px;
+  text-align: center;
 }
