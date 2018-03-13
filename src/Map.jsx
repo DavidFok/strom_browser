@@ -24,8 +24,8 @@ const MyMapComponent = compose(
         return (
           <Marker 
             position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
-            onClick={props.onMarkerClick} 
-            options={props.iconColor(parkade) }
+            onClick={() => props.onMarkerClick(parkade)} 
+            options={props.iconColor(parkade)}
           />
         )
       })
@@ -38,10 +38,18 @@ class Map extends Component {
     super(props);
     this.state = {
       parkades: props.parkades,
-      infoOpen: false
+      infoOpen: false,
+      currentParkade: null
     };
   }
   
+  onMarkerClick(parkade) {
+    this.setState({
+      infoOpen: !this.state.infoOpen,
+      currentParkade: parkade
+    });
+  }
+
   iconColor(parkade) {
     let occupied = parkade.occupied_regular;
     let usage = occupied / parkade.spot_count_regular;
@@ -86,21 +94,35 @@ class Map extends Component {
     console.log('Rendering <Map/>');
     return (
       <div>
-        <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor}/>
-        
+        <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor} onMarkerClick={this.onMarkerClick.bind(this)} />
         
         <Drawer
             docked={false}
-            width={"90%"}
+            width={"100%"}
+            disableSwipeToOpen={true}
             openSecondary={true}
             open={this.state.infoOpen}
             onRequestChange={(open) => this.setState({infoOpen: open})}
         >
-
+        { this.state.currentParkade &&
+          <div>
+            <h1> { this.state.currentParkade.name }</h1>
+            <p>
+              { this.state.currentParkade.street_line_1 }
+              { this.state.currentParkade.street_line_2 }
+              { this.state.currentParkade.city }
+              { this.state.currentParkade.province}
+              { this.state.currentParkade.postal_code }
+            </p>
+            <p> { this.state.currentParkade.spot_count_regular + this.state.currentParkade.spot_count_handicap } 
+            </p>
+          </div>
+        }
         </Drawer>
       </div>
     );
   }
 }
+
 
 export default Map;
