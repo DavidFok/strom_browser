@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SignUpForm from './components/SignUpForm.jsx';
+import { Redirect } from 'react-router';
 
 
 class SignUpPage extends React.Component {
@@ -39,7 +40,8 @@ class SignUpPage extends React.Component {
         country: '',
         handicap: false
       },
-      required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "street_1", "city", "province", "postal_code", "country"]
+      required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "street_1", "city", "province", "postal_code", "country"],
+      redirect: false
     };
 
     this.processForm = this.processForm.bind(this);
@@ -84,7 +86,10 @@ class SignUpPage extends React.Component {
       // if signup request form has been entered correctly
       console.log("signup form is valid!");
       this.clearFormError();
+      // send registration information to server
       this.props.newUser(this.state.user);
+      // set redirect to true
+      this.setState({ redirect: true });
     } else {
       // if signup request form is not valid, show error messages where applicable
       console.log("signup form is invalid!");
@@ -158,16 +163,24 @@ class SignUpPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (
-      <SignUpForm
-        onSubmit={this.processForm}
-        onChange={this.changeUser}
-        onToggle={this.toggleHandicap}
-        errors={this.state.errors}
-        user={this.state.user}
-        errorText={this.state.errorText}
-      />
-    );
+    const { redirect } = this.state;
+    console.log("redirect state: ", redirect);
+    if (redirect){
+      return(
+        <Redirect to='/'/>
+      );
+    } else {
+      return (
+        <SignUpForm
+          onSubmit={this.processForm}
+          onChange={this.changeUser}
+          onToggle={this.toggleHandicap}
+          errors={this.state.errors}
+          user={this.state.user}
+          errorText={this.state.errorText}
+        />
+      );
+    }
   }
 
 }
