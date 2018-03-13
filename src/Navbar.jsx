@@ -12,14 +12,15 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuOpen: false,
-      extraOpen: false
+      open: false
     };
   }
 
-  handleMenuToggle = () => this.setState({menuOpen: !this.state.menuOpen});
+  handleToggle = () => this.setState({open: !this.state.open});
   
-  handleClose = () => this.setState({menuOpen: false, extraOpen: false});
+  handleClose = () => this.setState({open: false});
+  
+  
   render() {
 
     const style = {
@@ -31,7 +32,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar">
           <div className="container">
-            <h1 className="icon-menu" onClick={this.handleMenuToggle} > <MdMenu /> </h1>
+            <h1 className="icon-menu" onClick={this.handleToggle} > <MdMenu /> </h1>
             <p className="navbar-text"> Search here </p>
             <h1 className="icon-search"> <MdSearch /> </h1>
           </div>
@@ -45,8 +46,8 @@ class Navbar extends Component {
         <Drawer
           docked={false}
           width={250}
-          open={this.state.menuOpen}
-          onRequestChange={(open) => this.setState({menuOpen: open})}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open: open})}
         >
           <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
           <MenuItem 

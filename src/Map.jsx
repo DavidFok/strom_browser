@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { compose, withProps, withHandlers } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MdSearch from 'react-icons/lib/md/search';
+import Drawer from 'material-ui/Drawer';
 
 const MyMapComponent = compose(
   withProps({
@@ -36,7 +37,8 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkades: props.parkades
+      parkades: props.parkades,
+      infoOpen: false
     };
   }
   
@@ -83,7 +85,20 @@ class Map extends Component {
   render() {
     console.log('Rendering <Map/>');
     return (
-      <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor}/>
+      <div>
+        <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor}/>
+        
+        
+        <Drawer
+            docked={false}
+            width={"90%"}
+            openSecondary={true}
+            open={this.state.infoOpen}
+            onRequestChange={(open) => this.setState({infoOpen: open})}
+        >
+
+        </Drawer>
+      </div>
     );
   }
 }
