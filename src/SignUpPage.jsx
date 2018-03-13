@@ -15,8 +15,17 @@ class SignUpPage extends React.Component {
       errors: {},
       user: {
         email: '',
-        name: '',
-        password: ''
+        password: '',
+        password_confirmation: '',
+        first_name: '',
+        last_name: '',
+        street_1: '',
+        street_2: '',
+        city: '',
+        province: '',
+        postal_code: '',
+        country: '',
+        handicap: false
       }
     };
 
@@ -33,9 +42,10 @@ class SignUpPage extends React.Component {
     const field = event.target.name;
     const user = this.state.user;
     user[field] = event.target.value;
-
+    
+    console.log('user state: ', user);
     this.setState({
-      user
+      user: user
     });
   }
 
@@ -47,10 +57,6 @@ class SignUpPage extends React.Component {
   processForm(event) {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
-
-    console.log('name:', this.state.user.name);
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
   }
 
   /**
