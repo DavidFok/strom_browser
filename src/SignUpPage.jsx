@@ -3,7 +3,6 @@ import SignUpForm from './components/SignUpForm.jsx';
 
 
 class SignUpPage extends React.Component {
-
   /**
    * Class constructor.
    */
@@ -101,7 +100,6 @@ class SignUpPage extends React.Component {
     const user = this.state.user;
     // required fields
     const required_fields = this.state.required_fields;
-    // required fields
 
     required_fields.forEach((key, index) => {
       if (user[key] === ""){
@@ -122,33 +120,20 @@ class SignUpPage extends React.Component {
     // checks form for missing fields and outputs error message below corresponding input field
     const errorText = this.state.errorText;
 
-    const f1 = this.state.user.email;
-    const f2 = this.state.user.password;
-    const f3 = this.state.user.password_confirmation;
-    const f4 = this.state.user.first_name;
-    const f5 = this.state.user.last_name;
-    const f6 = this.state.user.street_1;
-    const f7 = this.state.user.street_2;
-    const f8 = this.state.user.city;
-    const f9 = this.state.user.province;
-    const f10 = this.state.user.postal_code;
-    const f11 = this.state.user.country;
-    const f12 = this.state.user.handicap;
+    const user = this.state.user;
+    // required fields
+    const required_fields = this.state.required_fields;
 
-    const required = [f1, f2, f3, f4, f5, f6, f8, f9, f10, f11];
-    const keys = ['email', 'password', 'password_confirmation', 'first_name', 'last_name', 'street_1', 'city', 'province', 'postal_code', 'country', 'handicap'];
-
-    // check that all required fields are non empty
-    required.forEach((value, index) => {
-      if (value === ""){
-        errorText[keys[index]] = "this field is required";
+    required_fields.forEach((key, index) => {
+      if (user[key] === ""){
+        errorText[key] = "this field is required";
       } else {
-        errorText[keys[index]] = "";      
+        errorText[key] = "";
       }
     });
     
     // check that password and password_confirmation fields match
-    if (f2 !== f3){
+    if (user.password !== user.password_confirmation){
       errorText.password_confirmation = "Passwords do not match"
     }
 
