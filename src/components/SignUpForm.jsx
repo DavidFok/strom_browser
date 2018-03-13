@@ -126,7 +126,7 @@ class SignUpForm extends Component{
           onToggle={this.props.onToggle}
           />
         </div>
-        <RaisedButton label="Submit" primary={true} style={style} />
+        <RaisedButton onClick={this.props.onSubmit} label="Submit" primary={true} style={style} />
       </Card>
     );
   }
