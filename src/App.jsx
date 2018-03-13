@@ -23,10 +23,13 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       console.log("receiving data: ", data);
-      switch (data.type) {
+      switch (data.route) {
         case 'parkadeData':
-        this.setState({ parkades: data.data});
-        break;
+          this.setState({ parkades: data.data});
+          break;
+        case 'registerData':
+          // add code here
+          break;
       }
     }
   }
