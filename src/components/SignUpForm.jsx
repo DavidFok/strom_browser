@@ -33,6 +33,7 @@ class SignUpForm extends Component{
         name="first_name"
         value={this.props.user.first_name}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.first_name}
         /><br />
         <br />
 
@@ -41,6 +42,7 @@ class SignUpForm extends Component{
         name="last_name"
         value={this.props.user.last_name}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.last_name}
         /><br />
         <br />
 
@@ -49,6 +51,7 @@ class SignUpForm extends Component{
         name="street_1"
         value={this.props.user.street_1}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.street_1}
         /><br />
         <br />
 
@@ -57,6 +60,7 @@ class SignUpForm extends Component{
         name="street_2"
         value={this.props.user.street_2}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.street_2}
         /><br />
         <br />
 
@@ -65,6 +69,7 @@ class SignUpForm extends Component{
         name="city"
         value={this.props.user.city}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.city}
         /><br />
         <br />
 
@@ -73,6 +78,7 @@ class SignUpForm extends Component{
         name="province"
         value={this.props.user.province}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.province}
         /><br />
         <br />
 
@@ -81,6 +87,7 @@ class SignUpForm extends Component{
         name="postal_code"
         value={this.props.user.postal_code}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.postal_code}
         /><br />
         <br />
 
@@ -89,6 +96,7 @@ class SignUpForm extends Component{
         name="country"
         value={this.props.user.country}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.country}
         /><br />
         <br />
 
@@ -97,6 +105,7 @@ class SignUpForm extends Component{
         name="email"
         value={this.props.user.email}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.email}
         /><br />
         <br />
 
@@ -105,15 +114,17 @@ class SignUpForm extends Component{
         name="password"
         value={this.props.user.password}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.password}
         type="password"
         /><br />
         <br />
 
         <TextField
         hintText="confirm password"
-        name="confirm_password"
-        value={this.props.user.confirm_password}
+        name="password_confirmation"
+        value={this.props.user.password_confirmation}
         onChange={this.props.onChange}
+        errorText={this.props.errorText.password_confirmation}
         type="password"
         /><br />
         <br />
