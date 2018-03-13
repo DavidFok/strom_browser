@@ -17,73 +17,119 @@ const style = {
   },
 };
 
-const SignUpForm = () => (
-  <Card className="signup_form">
+class SignUpForm extends Component{
+  constructor(props){
+    super(props);
+  }
 
-  <h1>Sign Up</h1>
+  render() {
+    return(
+      <Card className="signup_form">
 
-    <TextField
-    hintText="first name"
-    /><br />
-    <br />
+      <h1>Sign Up</h1>
 
-    <TextField
-    hintText="last name"
-    /><br />
-    <br />
+        <TextField
+        hintText="first name"
+        name="first_name"
+        value={this.props.user.first_name}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="street 1"
-    />
-    <TextField
-    hintText="street 2"
-    /><br />
-    <br />
+        <TextField
+        hintText="last name"
+        name="last_name"
+        value={this.props.user.last_name}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="city"
-    /><br />
-    <br />
+        <TextField
+        hintText="street_1"
+        name="street_1"
+        value={this.props.user.street_1}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="province"
-    /><br />
-    <br />
+        <TextField
+        hintText="street_2"
+        name="street_2"
+        value={this.props.user.street_2}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="postal code"
-    /><br />
-    <br />
+        <TextField
+        hintText="city"
+        name="city"
+        value={this.props.user.city}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="country"
-    /><br />
-    <br />
+        <TextField
+        hintText="province"
+        name="province"
+        value={this.props.user.province}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="email"
-    /><br />
-    <br />
+        <TextField
+        hintText="postal code"
+        name="postal_code"
+        value={this.props.user.postal_code}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="password"
-    /><br />
-    <br />
+        <TextField
+        hintText="country"
+        name="country"
+        value={this.props.user.country}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-    <TextField
-    hintText="confirm password"
-    /><br />
-    <br />
+        <TextField
+        hintText="email"
+        name="email"
+        value={this.props.user.email}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
 
-  <div style={style.block}>
-    <Toggle
-    label="handicap?"
-    style={style.toggle}
-    />
-  </div>
+        <TextField
+        hintText="password"
+        name="password"
+        value={this.props.user.password}
+        onChange={this.props.onChange}
+        type="password"
+        /><br />
+        <br />
 
-    <RaisedButton label="Submit" primary={true} style={style} />
-  </Card>
-);  
+        <TextField
+        hintText="confirm password"
+        name="confirm_password"
+        value={this.props.user.confirm_password}
+        onChange={this.props.onChange}
+        type="password"
+        /><br />
+        <br />
+
+        <div style={style.block}>
+          <Toggle
+          label="handicap?"
+          style={style.toggle}
+          value={this.props.user.handicap}
+          onToggle={this.props.onToggle}
+          />
+        </div>
+        <RaisedButton onClick={this.props.onSubmit} label="Submit" primary={true} style={style} />
+      </Card>
+    );
+  }
+}
 
 export default SignUpForm;

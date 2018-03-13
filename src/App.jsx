@@ -29,13 +29,33 @@ class App extends Component {
       }
     }
   }
+
+  newUser(user){
+    let userObject = {
+      user: user
+    };
+
+    let outboundMessageVehicle = {
+      type: "register",
+      payload: userObject
+    };
+
+    //send new user notification to server
+    this.socket.send(JSON.stringify(outboundMessageVehicle));
+    console.log('outbound message vehicle: ', outboundMessageVehicle);
+  }
   
   render() {
     return (
       <Router>
         <Switch>
           <Route path='/login' exact component={LoginPage}/>
-          <Route path='/register' exact component={SignUpPage}/>
+          {/* <Route path='/register' exact component={SignUpPage}/> */}
+          <Route path='/register' exact render={() => {
+            return(
+              <SignUpPage newUser={this.newUser.bind(this)}/>
+            );
+          }}/>
           <Route path='/' exact render={() => {
             return(
               <div>
