@@ -31,6 +31,7 @@ class SignUpPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
+    this.toggleHandicap = this.toggleHandicap.bind(this);
   }
 
   /**
@@ -47,6 +48,15 @@ class SignUpPage extends React.Component {
     this.setState({
       user: user
     });
+  }
+
+  toggleHandicap(event) {
+    const user = this.state.user;
+    user["handicap"] = (user["handicap"] ? false : true);
+    this.setState({
+      user:user
+    });
+    console.log("handicap: ", user["handicap"]);
   }
 
   /**
@@ -67,6 +77,7 @@ class SignUpPage extends React.Component {
       <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
+        onToggle={this.toggleHandicap}
         errors={this.state.errors}
         user={this.state.user}
       />

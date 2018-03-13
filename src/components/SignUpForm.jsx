@@ -122,6 +122,8 @@ class SignUpForm extends Component{
           <Toggle
           label="handicap?"
           style={style.toggle}
+          value={this.props.user.handicap}
+          onToggle={this.props.onToggle}
           />
         </div>
         <RaisedButton label="Submit" primary={true} style={style} />
