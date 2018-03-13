@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Menu from './Menu.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import LoginPage from './LoginPage.jsx';
+import SessionButton from './SessionButton.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class App extends Component {
                 <Link to="/register">Register</Link>
                 <Map parkades={this.state.parkades}/>
                 <Navbar/>
+                <SessionButton/>
               </div>
             );
           }}/>
