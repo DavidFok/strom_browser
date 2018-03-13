@@ -22,6 +22,7 @@ class App extends Component {
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log("receiving data: ", data);
       switch (data.type) {
         case 'parkadeData':
         this.setState({ parkades: data.data});
@@ -31,13 +32,9 @@ class App extends Component {
   }
 
   newUser(user){
-    let userObject = {
-      user: user
-    };
-
     let outboundMessageVehicle = {
       type: "register",
-      payload: userObject
+      data: user
     };
 
     //send new user notification to server
