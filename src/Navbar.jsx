@@ -11,11 +11,15 @@ class Navbar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {
+      menuOpen: false,
+      extraOpen: false
+    };
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
-
+  handleMenuToggle = () => this.setState({menuOpen: !this.state.menuOpen});
+  
+  handleClose = () => this.setState({menuOpen: false, extraOpen: false});
   render() {
 
     const style = {
@@ -27,7 +31,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar">
           <div className="container">
-            <h1 className="icon-menu" onClick={this.handleToggle} > <MdMenu /> </h1>
+            <h1 className="icon-menu" onClick={this.handleMenuToggle} > <MdMenu /> </h1>
             <p className="navbar-text"> Search here </p>
             <h1 className="icon-search"> <MdSearch /> </h1>
           </div>
@@ -41,13 +45,13 @@ class Navbar extends Component {
         <Drawer
           docked={false}
           width={250}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          open={this.state.menuOpen}
+          onRequestChange={(open) => this.setState({menuOpen: open})}
         >
-          <MenuItem onClick={this.handleToggle}>Account Settings</MenuItem>
+          <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
           <MenuItem 
             containerElement={<Link to="/login" />} 
-            onClick={this.handleToggle} 
+            onClick={this.handleClose} 
             primaryText="Login"
           />
           <MenuItem 
@@ -55,7 +59,7 @@ class Navbar extends Component {
             onClick={this.handleClose} 
             primaryText="Sign Up"
             />
-          <MenuItem onClick={this.handleToggle}>Logout</MenuItem>
+          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
         </Drawer>
       </div>
     );
