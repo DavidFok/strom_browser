@@ -36,7 +36,7 @@ class App extends Component {
     };
 
     let outboundMessageVehicle = {
-      type: "register",
+      type: 'register',
       payload: userObject
     };
 
@@ -59,8 +59,6 @@ class App extends Component {
           <Route path='/' exact render={() => {
             return(
               <div>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
                 <Map parkades={this.state.parkades}/>
                 <Navbar/>
                 <SessionButton/>
