@@ -39,7 +39,8 @@ class SignUpPage extends React.Component {
         postal_code: '',
         country: '',
         handicap: false
-      }
+      },
+      required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "street_1", "city", "province", "postal_code", "country"]
     };
 
     this.processForm = this.processForm.bind(this);
@@ -94,34 +95,22 @@ class SignUpPage extends React.Component {
 
   validateForm() {
     // shortlist form fields
-    const f1 = this.state.user.email;
-    const f2 = this.state.user.password;
-    const f3 = this.state.user.password_confirmation;
-    const f4 = this.state.user.first_name;
-    const f5 = this.state.user.last_name;
-    const f6 = this.state.user.street_1;
-    const f7 = this.state.user.street_2;
-    const f8 = this.state.user.city;
-    const f9 = this.state.user.province;
-    const f10 = this.state.user.postal_code;
-    const f11 = this.state.user.country;
-    const f12 = this.state.user.handicap;
-
     let check_empty_fields = true;
     let check_passwords_match = false;
-
-    // required fields
-    const required = [f1, f2, f3, f4, f5, f6, f8, f9, f10, f11];
     
-    // validate that that there are no empty required fields    
-    required.forEach((value, index) => {
-      if (value === ""){
+    const user = this.state.user;
+    // required fields
+    const required_fields = this.state.required_fields;
+    // required fields
+
+    required_fields.forEach((key, index) => {
+      if (user[key] === ""){
         check_empty_fields = false;
-      }  
-    });   
+      }
+    });
 
     // validate that password and password confirmation match
-    if (f2 === f3){
+    if (user.password === user.password_confirmation){
       check_passwords_match = true;
     }
 
