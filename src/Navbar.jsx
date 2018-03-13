@@ -3,6 +3,8 @@ import MdMenu from 'react-icons/lib/md/menu';
 import MdSearch from 'react-icons/lib/md/search';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import MdAccessible from 'react-icons/lib/md/accessible';
 
 class Navbar extends Component {
 
@@ -16,6 +18,11 @@ class Navbar extends Component {
   handleClose = () => this.setState({open: false});
 
   render() {
+
+    const style = {
+      marginRight: 20,
+    };
+
     console.log('Rendering <Navbar/>');
     return (
       <div>
@@ -25,7 +32,12 @@ class Navbar extends Component {
             <p className="navbar-text"> Search here </p>
             <h1 className="icon-search"> <MdSearch /> </h1>
           </div>
+          <FloatingActionButton className="handicap-button" style={style}>
+              <MdAccessible />
+          </FloatingActionButton>
         </nav>
+           
+
 
         <Drawer
           docked={false}
