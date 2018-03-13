@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import MdMenu from 'react-icons/lib/md/menu';
 import MdSearch from 'react-icons/lib/md/search';
 import Drawer from 'material-ui/Drawer';
@@ -14,8 +15,6 @@ class Navbar extends Component {
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
-
-  handleClose = () => this.setState({open: false});
 
   render() {
 
@@ -45,8 +44,18 @@ class Navbar extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
-          <MenuItem onClick={this.handleClose}>Login</MenuItem>
+          <MenuItem onClick={this.handleToggle}>Account Settings</MenuItem>
+          <MenuItem 
+            containerElement={<Link to="/login" />} 
+            onClick={this.handleToggle} 
+            primaryText="Login"
+          />
+          <MenuItem 
+            containerElement={<Link to="/register" />} 
+            onClick={this.handleClose} 
+            primaryText="Sign Up"
+            />
+          <MenuItem onClick={this.handleToggle}>Logout</MenuItem>
         </Drawer>
       </div>
     );
