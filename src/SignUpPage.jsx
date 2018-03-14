@@ -84,7 +84,6 @@ class SignUpPage extends React.Component {
     if (this.validateForm()){
       // if signup request form has been entered correctly
       console.log("signup form is valid!");
-      this.clearFormError();
       // send registration information to server
       this.props.newUser(this.state.user);
       // set redirect to true
@@ -144,17 +143,6 @@ class SignUpPage extends React.Component {
     this.setState({
       errorText: errorText
     });
-  }
-
-  clearFormError() {
-    // clears form errors listed on form
-    const errorText = this.state.errorText;
-    for (let field in errorText){
-      errorText[field] = ""; 
-    }
-    this.setState({
-      errorText: errorText
-    })
   }
 
 
