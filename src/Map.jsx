@@ -19,7 +19,7 @@ const MyMapComponent = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={15}
+    defaultZoom={window.screen.availWidth < 400 ? 14 : 15}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
     {props.parkades.map(function(parkade) {
