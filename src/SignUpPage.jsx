@@ -83,9 +83,9 @@ class SignUpPage extends React.Component {
     event.preventDefault();
     if (this.validateForm()){
       // if signup request form has been entered correctly
-      console.log("signup form is valid!");
       // send registration information to server
       this.props.newUser(this.state.user);
+      console.log("signup form is valid!");
       // set redirect to true
       this.setState({ redirect: true });
     } else {

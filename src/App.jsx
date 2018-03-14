@@ -34,23 +34,36 @@ class App extends Component {
     }
   }
 
-  newUser(user){
+  newUser(user) {
     let outboundMessageVehicle = {
       type: "register",
       data: user
     };
 
-    //send new user notification to server
+    // send new user notification to server
     this.socket.send(JSON.stringify(outboundMessageVehicle));
     console.log('outbound message vehicle: ', outboundMessageVehicle);
   }
   
+  login(user) {
+    let outboundMessageVehicle = {
+      type: "login",
+      data: user
+    }
+    // send login notification to server
+    this.socket.send(JSON.stringify(outboundMessageVehicle));
+    console.log('outbound message vehicle: ', outboundMessageVehicle);
+  }
+
   render() {
     return (
       <Router>
         <Switch>
-          <Route path='/login' exact component={LoginPage}/>
-          {/* <Route path='/register' exact component={SignUpPage}/> */}
+          <Route path='/login' exact render = {() => {
+            return(
+              <LoginPage login={this.login.bind(this)}/>
+            );
+          }}/>
           <Route path='/register' exact render={() => {
             return(
               <SignUpPage newUser={this.newUser.bind(this)}/>

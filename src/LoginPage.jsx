@@ -39,7 +39,9 @@ class LoginPage extends React.Component {
     event.preventDefault();
     if(this.validateForm()){
       // if the form is valid
+      this.props.login(this.state.user);
       console.log("Submitted!");
+      // redirect user to home
       this.setState({ redirect: true });
     } else {
       // if the form is not valid, display error fields
