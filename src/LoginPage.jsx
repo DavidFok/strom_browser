@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LoginForm from './components/LoginForm.jsx';
-
+import { Redirect } from 'react-router';
 
 class LoginPage extends React.Component {
 
@@ -45,9 +45,9 @@ class LoginPage extends React.Component {
     const field = event.target.name;
     const user = this.state.user;
     user[field] = event.target.value;
-
+    console.log('user state: ', user);
     this.setState({
-      user
+      user: user
     });
   }
 

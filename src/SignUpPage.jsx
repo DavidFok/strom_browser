@@ -59,7 +59,6 @@ class SignUpPage extends React.Component {
     const user = this.state.user;
     user[field] = event.target.value;
     
-    console.log('user state: ', user);
     this.setState({
       user: user
     });

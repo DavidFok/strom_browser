@@ -9,21 +9,36 @@ const style = {
   margin: 12,
 };
 
-const LoginForm = () => (
-  <Card className="login_form">
-    <TextField
-    hintText="email"
-    /><br />
-    <br />
-
-    <TextField
-    hintText="password"
-    /><br />
-    <br />
-
-    <RaisedButton label="Primary" primary={true} style={style} />
-  </Card>
-);  
+class LoginForm extends Component{
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
+    return(
+      <Card className="login_form">
+        <TextField
+        hintText="email"
+        name="email"
+        value={this.props.user.email}
+        onChange={this.props.onChange}
+        /><br />
+        <br />
+    
+        <TextField
+        hintText="password"
+        name="password"
+        value={this.props.user.password}
+        onChange={this.props.onChange}
+        type="password"
+        /><br />
+        <br />
+    
+        <RaisedButton label="Primary" type="submit" primary={true} style={style} />
+      </Card>
+    );
+  }
+}
 
 
 export default LoginForm;
