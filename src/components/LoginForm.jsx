@@ -21,6 +21,7 @@ class LoginForm extends Component{
         hintText="email"
         name="email"
         value={this.props.user.email}
+        errorText={this.props.errorText.email}
         onChange={this.props.onChange}
         /><br />
         <br />
@@ -29,12 +30,13 @@ class LoginForm extends Component{
         hintText="password"
         name="password"
         value={this.props.user.password}
+        errorText={this.props.errorText.password}
         onChange={this.props.onChange}
         type="password"
         /><br />
         <br />
     
-        <RaisedButton label="Primary" type="submit" primary={true} style={style} />
+        <RaisedButton onClick={this.props.onSubmit} label="Primary" type="submit" primary={true} style={style} />
       </Card>
     );
   }

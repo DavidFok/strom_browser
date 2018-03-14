@@ -13,10 +13,15 @@ class LoginPage extends React.Component {
     // set the initial component state
     this.state = {
       errors: {},
+      errorText:{
+        email: '',
+        password: ''
+      },
       user: {
         email: '',
         password: ''
-      }
+      },
+      required_fields: ["email", "password"]
     };
 
     this.processForm = this.processForm.bind(this);
@@ -31,7 +36,13 @@ class LoginPage extends React.Component {
   processForm(event) {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
-
+    if(this.validateForm()){
+      // if the form is valid
+      console.log("Submitted!");
+    } else {
+      // if the form is not valid, display error fields
+      this.displayFormError();
+    }
     console.log('email:', this.state.user.email);
     console.log('password:', this.state.user.password);
   }
@@ -51,6 +62,44 @@ class LoginPage extends React.Component {
     });
   }
 
+  validateForm() {
+    // shortlist form fields
+    let check_empty_fields = true;
+    const user = this.state.user;
+    // required fields
+    const required_fields = this.state.required_fields;
+
+    required_fields.forEach((key, index) => {
+      if (user[key] === ""){
+        check_empty_fields = false;
+      }
+    });
+
+    // return true for valid and false for invalid signup request
+    return (check_empty_fields);
+  }
+
+  displayFormError() {
+    // checks form for missing fields and outputs error message below corresponding input field
+    const errorText = this.state.errorText;
+
+    const user = this.state.user;
+    // required fields
+    const required_fields = this.state.required_fields;
+
+    required_fields.forEach((key, index) => {
+      if (user[key] === ""){
+        errorText[key] = "this field is required";
+      } else {
+        errorText[key] = "";
+      }
+    });
+    
+    this.setState({
+      errorText: errorText
+    });
+  }
+
   /**
    * Render the component.
    */
@@ -60,6 +109,7 @@ class LoginPage extends React.Component {
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
+        errorText={this.state.errorText}
         user={this.state.user}
       />
     );
