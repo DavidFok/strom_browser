@@ -6,32 +6,58 @@ li{
   list-style-type: none;
 }
 
-.parkade-info h1{
+.close-button {
+  font-size: 9rem;
+  position: absolute;
+  display: inline;
+  top: 5px;
+  right: 5px;
+}
+
+@media (min-width: 576px) {
+  .close-button {
+    font-size: 6rem;
+  }
+}
+
+.title {
+    color: whitesmoke;
+    display: flex;
     font-size: 28px;
-    background-color: rgba(0, 187, 212, 1);
+    font-weight: 400;
+    background-color: rgb(33, 150, 243);
     border-bottom: 1px solid lightgrey;
     box-shadow: 0 4px 2px -2px lightgrey;
     margin: 0px;
-    padding: 22px 10px 10px 20px;
+    padding: 22px 50px 10px 20px;
 }
 
 .parkade-info div {
-    margin: 0px 20px;
+    margin: 0px 0px;
     font-size: 18px;
 }
 
 .parkade-info ul{
     margin: 10px auto;
+    li {
+      border-bottom: 1px solid lightgray;
+      padding: 8px 20px;
+      font-weight: lighter;
+    }
+    td {
+      padding-right: 5px;
+    }
 }
 
 .parkade-info .button-container{
     display: flex;
 
     li {
-        border: 2px solid grey;
-        border-radius: 10px;
-        background-color: lightgrey;
+        font-size: 16px;
         margin: 8px;
         justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+        color: rgb(33, 150, 243);
     }
 }

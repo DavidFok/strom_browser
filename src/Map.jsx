@@ -7,6 +7,9 @@ import Drawer from 'material-ui/Drawer';
 import FaBolt from 'react-icons/lib/fa/bolt';
 import FaCreditCardAlt from 'react-icons/lib/fa/credit-card-alt';
 import FaWheelchair from 'react-icons/lib/fa/wheelchair';
+import MdAccessTime from 'react-icons/lib/md/access-time';
+import MdLocationOn from 'react-icons/lib/md/location-on';
+import MdDirectionsCar from 'react-icons/lib/md/directions-car';
 
 const MyMapComponent = compose(
   withProps({
@@ -101,7 +104,7 @@ class Map extends Component {
         
         <Drawer
             docked={false}
-            width={window.screen.availWidth < 400 ? "100%" : 400}
+            width={window.screen.availWidth < 400 ? '100%' : 400}
             disableSwipeToOpen={true}
             openSecondary={true}
             open={this.state.infoOpen}
@@ -109,25 +112,37 @@ class Map extends Component {
         >
         { x &&
           <div className="parkade-info">
-            <h1> { x.name }</h1>
+            <div className="title">          
+              <h2> { x.name }</h2>
+              <MdClose className="close-button"></MdClose>
+            </div>
             <div>
+            <ul className="button-container">
+                <li><FaBolt/><br/>{ x.spot_count_regular - x.occupied_regular} available</li>
+                <li><FaWheelchair/><br/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
+                <li><FaCreditCardAlt/><br/>$1.00/Kwh</li>  
+              </ul>
               <ul>
                 <li>
-                  Hours: { x.open_time } - { x.close_time }
+                  <MdAccessTime /> <strong>Open </strong> { x.open_time } Closes { x.close_time }
                 </li>
-                <li>Total Spots: { x.spot_count_regular + x.spot_count_handicap}</li>
-                <li>
-                  { x.street_line_1 }
-                  { x.street_line_2 } <br/>
-                  { x.city }, { x.province} { x.postal_code }
+                <li><MdDirectionsCar /> Total Spots: { x.spot_count_regular + x.spot_count_handicap}</li>
+                <li> 
+                  <table>
+                    <tr>
+                      <td>
+                        <MdLocationOn/>
+                      </td>
+                      <td>
+                        { x.street_line_1 }
+                        { x.street_line_2 } <br/>
+                        { x.city }, { x.province} { x.postal_code }
+                      </td>
+                    </tr>
+                  </table>
                 </li>
-              </ul>
-              <p>{ x.notes }</p>
-              <ul className="button-container">
-                <li><FaBolt/>{ x.spot_count_regular - x.occupied_regular} available</li>
-                <li><FaWheelchair/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
-                <li><FaCreditCardAlt/>$1.00/Kwh</li>  
-              </ul>
+                <li>{ x.notes }</li>
+              </ul>              
             </div>
           </div>
         }
