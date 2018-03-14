@@ -30,6 +30,12 @@ class App extends Component {
         case 'registerData':
           // add code here
           break;
+        case 'spots':
+          if (data.type === "confirm") {
+            this.setState({spots: data.data});
+          } else {
+            console.log("error in receiving spots: ", data.data);
+          }
       }
     }
   }
@@ -46,13 +52,21 @@ class App extends Component {
   }
   
   login(user) {
-    let outboundMessageVehicle = {
+    let outMsgVcle = {
       type: "login",
       data: user
     }
     // send login notification to server
-    this.socket.send(JSON.stringify(outboundMessageVehicle));
-    console.log('outbound message vehicle: ', outboundMessageVehicle);
+    this.socket.send(JSON.stringify(outMsgVcle));
+    console.log('outbound message vehicle: ', outMsgVcle);
+  }
+
+  getSpotData(parkadeId) {
+    let outMsgVcle = {
+      type: "spots",
+      data: parkadeId
+    }
+    this.socket.send(JSON.stringify(outMsgVcle));
   }
 
   render() {
@@ -72,7 +86,7 @@ class App extends Component {
           <Route path='/' exact render={() => {
             return(
               <div>
-                <Map parkades={this.state.parkades}/>
+                <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
                 <Navbar/>
                 <SessionButton/>
               </div>

@@ -43,6 +43,7 @@ class Map extends Component {
     super(props);
     this.state = {
       parkades: props.parkades,
+      spots: undefined,
       infoOpen: false,
       currentParkade: null
     };
@@ -53,6 +54,8 @@ class Map extends Component {
       infoOpen: !this.state.infoOpen,
       currentParkade: parkade
     });
+    let parkadeId = parkade.id;
+    this.props.getSpotData(parkadeId);
   }
 
   iconColor(parkade) {
@@ -93,11 +96,23 @@ class Map extends Component {
     if (this.state.parkades !== this.props.parkades) {
       this.setState({parkades: this.props.parkades})
     }
+    console.log("this is this.props.spots: ", this.props.spots);
+    if (this.state.spots !== this.props.spots) {
+      this.setState({spots: this.props.spots});
+      console.log("state has these spots: ", this.state.spots);
+    }
   }
 
   render() {
     console.log('Rendering <Map/>');
     let x = this.state.currentParkade;
+    let parkingSpots;
+    if (this.state.spots !== undefined) {
+      parkingSpots = this.state.spots.map((spot) => {
+        return(<li>{spot.spot_label}</li>)
+      })
+    }
+
     return (
       <div>
         <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor} onMarkerClick={this.onMarkerClick.bind(this)} />
@@ -143,6 +158,13 @@ class Map extends Component {
                 </li>
                 <li>{ x.notes }</li>
               </ul>              
+            </div>
+            <div>
+              {this.state.spots && 
+                <ul>
+                  {parkingSpots}
+                </ul>
+              }
             </div>
           </div>
         }
