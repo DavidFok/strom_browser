@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { compose, withProps, withHandlers } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import MdSearch from 'react-icons/lib/md/search';
+import MdClose from 'react-icons/lib/md/close';
+import Drawer from 'material-ui/Drawer';
+import FaBolt from 'react-icons/lib/fa/bolt';
+import FaCreditCardAlt from 'react-icons/lib/fa/credit-card-alt';
+import FaWheelchair from 'react-icons/lib/fa/wheelchair';
 
 const MyMapComponent = compose(
   withProps({
@@ -18,13 +22,12 @@ const MyMapComponent = compose(
     defaultZoom={13}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
-    {console.log(props.parkades)}
     {props.parkades.map(function(parkade) {
         return (
           <Marker 
             position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
-            onClick={props.onMarkerClick} 
-            options={props.iconColor(parkade) }
+            onClick={() => props.onMarkerClick(parkade)} 
+            options={props.iconColor(parkade)}
           />
         )
       })
@@ -36,10 +39,19 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkades: props.parkades
+      parkades: props.parkades,
+      infoOpen: false,
+      currentParkade: null
     };
   }
   
+  onMarkerClick(parkade) {
+    this.setState({
+      infoOpen: !this.state.infoOpen,
+      currentParkade: parkade
+    });
+  }
+
   iconColor(parkade) {
     let occupied = parkade.occupied_regular;
     let usage = occupied / parkade.spot_count_regular;
@@ -82,10 +94,48 @@ class Map extends Component {
 
   render() {
     console.log('Rendering <Map/>');
+    let x = this.state.currentParkade;
     return (
-      <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor}/>
+      <div>
+        <MyMapComponent className="map" parkades={this.state.parkades} iconColor={this.iconColor} onMarkerClick={this.onMarkerClick.bind(this)} />
+        
+        <Drawer
+            docked={false}
+            width={window.screen.availWidth < 400 ? "100%" : 400}
+            disableSwipeToOpen={true}
+            openSecondary={true}
+            open={this.state.infoOpen}
+            onRequestChange={(open) => this.setState({infoOpen: open})}
+        >
+        { x &&
+          <div className="parkade-info">
+            <h1> { x.name }</h1>
+            <div>
+              <ul>
+                <li>
+                  Hours: { x.open_time } - { x.close_time }
+                </li>
+                <li>Total Spots: { x.spot_count_regular + x.spot_count_handicap}</li>
+                <li>
+                  { x.street_line_1 }
+                  { x.street_line_2 } <br/>
+                  { x.city }, { x.province} { x.postal_code }
+                </li>
+              </ul>
+              <p>{ x.notes }</p>
+              <ul className="button-container">
+                <li><FaBolt/>{ x.spot_count_regular - x.occupied_regular} available</li>
+                <li><FaWheelchair/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
+                <li><FaCreditCardAlt/>$1.00/Kwh</li>  
+              </ul>
+            </div>
+          </div>
+        }
+        </Drawer>
+      </div>
     );
   }
 }
+
 
 export default Map;
