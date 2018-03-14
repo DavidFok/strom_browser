@@ -6,6 +6,10 @@ li{
   list-style-type: none;
 }
 
+.parkade-info {
+  opacity: 0.9;
+}
+
 .close-button {
   font-size: 9rem;
   position: absolute;
@@ -51,6 +55,7 @@ li{
 
 .parkade-info .button-container{
     display: flex;
+    flex-wrap: nowrap;
 
     li {
         font-size: 16px;
@@ -61,3 +66,57 @@ li{
         color: rgb(33, 150, 243);
     }
 }
+
+.spot-info ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px 15px;
+
+  li{
+    margin: 8px;
+    border: 2px solid grey;
+    border-radius: 8px;
+    width: 44%;
+    font-size: 16px;
+    padding: 0;
+    height: auto;
+    background-color: #e9eff1;
+
+    header{
+      position: relative;
+      border-bottom: 1px solid grey;
+      padding: 3px 5px;
+
+      div {
+        width: 50%;
+      }
+      p {
+        font-size: 16px;
+        margin: 2px;
+      }
+    }
+
+    svg{
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 22px;
+    }
+
+    table{
+      padding: 3px 5px;
+      width: 100%;
+
+      tr{
+        width: 100px;
+
+        td{
+          text-align: center;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+

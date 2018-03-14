@@ -58,6 +58,38 @@ class Map extends Component {
     this.props.getSpotData(parkadeId);
   }
 
+  handleClose(){
+    this.setState({infoOpen: false});
+  }
+
+  renderParkingSpots() {   
+    if (this.state.spots !== undefined) {
+      return this.state.spots.map((spot) => {
+        return (
+          <li>
+            <header>
+              <div>
+                <p># {spot.spot_label}</p>
+                <p>Available</p>
+              </div>
+              {spot.handicap && <FaWheelchair/> }
+            </header>
+            <table>
+              <tr>
+                <td>Plug type</td>
+                <td>Price</td>
+              </tr>
+              <tr>
+                <td>{spot.plug_type}</td>
+                <td>{spot.cents_per_kwh / 100}</td>
+              </tr>
+            </table>
+          </li>
+        )
+      })
+    }
+  }
+
   iconColor(parkade) {
     let occupied = parkade.occupied_regular;
     let usage = occupied / parkade.spot_count_regular;
@@ -96,22 +128,15 @@ class Map extends Component {
     if (this.state.parkades !== this.props.parkades) {
       this.setState({parkades: this.props.parkades})
     }
-    console.log("this is this.props.spots: ", this.props.spots);
+    // when Map.jsx receives new parking spots
     if (this.state.spots !== this.props.spots) {
       this.setState({spots: this.props.spots});
-      console.log("state has these spots: ", this.state.spots);
     }
   }
 
   render() {
     console.log('Rendering <Map/>');
     let x = this.state.currentParkade;
-    let parkingSpots;
-    if (this.state.spots !== undefined) {
-      parkingSpots = this.state.spots.map((spot) => {
-        return(<li>{spot.spot_label}</li>)
-      })
-    }
 
     return (
       <div>
@@ -129,10 +154,10 @@ class Map extends Component {
           <div className="parkade-info">
             <div className="title">          
               <h2> { x.name }</h2>
-              <MdClose className="close-button"></MdClose>
+              <MdClose className="close-button" onClick={this.handleClose.bind(this)}></MdClose>
             </div>
             <div>
-            <ul className="button-container">
+              <ul className="button-container">
                 <li><FaBolt/><br/>{ x.spot_count_regular - x.occupied_regular} available</li>
                 <li><FaWheelchair/><br/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
                 <li><FaCreditCardAlt/><br/>$1.00/Kwh</li>  
@@ -159,10 +184,10 @@ class Map extends Component {
                 <li>{ x.notes }</li>
               </ul>              
             </div>
-            <div>
+            <div className="spot-info">
               {this.state.spots && 
                 <ul>
-                  {parkingSpots}
+                  {this.renderParkingSpots()}
                 </ul>
               }
             </div>
