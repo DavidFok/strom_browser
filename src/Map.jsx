@@ -10,6 +10,7 @@ import FaWheelchair from 'react-icons/lib/fa/wheelchair';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 import MdLocationOn from 'react-icons/lib/md/location-on';
 import MdDirectionsCar from 'react-icons/lib/md/directions-car';
+import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 
 const MyMapComponent = compose(
   withProps({
@@ -54,40 +55,13 @@ class Map extends Component {
       infoOpen: !this.state.infoOpen,
       currentParkade: parkade
     });
-    let parkadeId = parkade.id;
-    this.props.getSpotData(parkadeId);
+
+    // request parking spot data from the server
+    this.props.getSpotData(parkade.id);
   }
 
   handleClose(){
     this.setState({infoOpen: false});
-  }
-
-  renderParkingSpots() {   
-    if (this.state.spots !== undefined) {
-      return this.state.spots.map((spot) => {
-        return (
-          <li>
-            <header>
-              <div>
-                <p># {spot.spot_label}</p>
-                <p>Available</p>
-              </div>
-              {spot.handicap && <FaWheelchair/> }
-            </header>
-            <table>
-              <tr>
-                <td>Plug type</td>
-                <td>Price</td>
-              </tr>
-              <tr>
-                <td>{spot.plug_type}</td>
-                <td>{spot.cents_per_kwh / 100}</td>
-              </tr>
-            </table>
-          </li>
-        )
-      })
-    }
   }
 
   iconColor(parkade) {
@@ -185,11 +159,7 @@ class Map extends Component {
               </ul>              
             </div>
             <div className="spot-info">
-              {this.state.spots && 
-                <ul>
-                  {this.renderParkingSpots()}
-                </ul>
-              }
+              { this.state.spots && <ParkingSpotDisplay spots={this.state.spots}/> }
             </div>
           </div>
         }
