@@ -151,7 +151,6 @@ class SignUpPage extends React.Component {
    */
   render() {
     const { redirect } = this.state;
-    console.log("redirect state: ", redirect);
     if (redirect){
       return(
         <Redirect to='/'/>

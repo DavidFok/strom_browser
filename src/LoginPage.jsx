@@ -21,7 +21,8 @@ class LoginPage extends React.Component {
         email: '',
         password: ''
       },
-      required_fields: ["email", "password"]
+      required_fields: ["email", "password"],
+      redirect: false
     };
 
     this.processForm = this.processForm.bind(this);
@@ -39,6 +40,7 @@ class LoginPage extends React.Component {
     if(this.validateForm()){
       // if the form is valid
       console.log("Submitted!");
+      this.setState({ redirect: true });
     } else {
       // if the form is not valid, display error fields
       this.displayFormError();
@@ -104,15 +106,23 @@ class LoginPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (
-      <LoginForm
-        onSubmit={this.processForm}
-        onChange={this.changeUser}
-        errors={this.state.errors}
-        errorText={this.state.errorText}
-        user={this.state.user}
-      />
-    );
+    const { redirect } = this.state;
+  
+    if (redirect){
+      return(
+        <Redirect to='/'/>
+      );
+    } else {
+      return (
+        <LoginForm
+          onSubmit={this.processForm}
+          onChange={this.changeUser}
+          errors={this.state.errors}
+          errorText={this.state.errorText}
+          user={this.state.user}
+        />
+      );
+    }
   }
 
 }
