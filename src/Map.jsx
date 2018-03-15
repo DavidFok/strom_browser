@@ -7,6 +7,10 @@ import Drawer from 'material-ui/Drawer';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 import ParkadeInfo from './components/ParkadeInfo.jsx';
 
+const defaultMapOptions = {
+  disableDefaultUI: true,
+};
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
@@ -16,10 +20,12 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
+
 )((props) =>
   <GoogleMap
     defaultZoom={window.screen.availWidth < 400 ? 14 : 15}
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
+    defaultOptions={defaultMapOptions}
   >
     {props.parkades.map(function(parkade) {
       return (
