@@ -15,11 +15,11 @@ function ParkingSpotDisplay(props) {
         <table>
           <tr>
             <td>Plug type</td>
-            <td>Price</td>
+            <td>$/Kwh</td>
           </tr>
           <tr>
             <td>{spot.plug_type}</td>
-            <td>{spot.cents_per_kwh / 100}</td>
+            <td>${Number.parseFloat(spot.cents_per_kwh / 100).toFixed(2)}</td>
           </tr>
         </table>
       </li>

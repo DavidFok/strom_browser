@@ -10,12 +10,13 @@ import MdDirectionsCar from 'react-icons/lib/md/directions-car';
 function ParkadeInfo(prop) {
     console.log("this is the prop that parkadeinfo receives: ", prop);
     let x = prop.parkade;
+    let price = Number.parseFloat(prop.price / 100).toFixed(2)
     let info = (
        <div>
             <ul className="button-container">
                 <li><FaBolt/><br/>{ x.spot_count_regular - x.occupied_regular} available</li>
                 <li><FaWheelchair/><br/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
-                <li><FaCreditCardAlt/><br/>$1.00/Kwh</li>  
+                <li><FaCreditCardAlt/><br/>${price}/Kwh</li>  
             </ul>
             <ul>
                 <li>

@@ -124,7 +124,8 @@ class Map extends Component {
               <h2> { this.state.currentParkade.name }</h2>
               <MdClose className="close-button" onClick={this.handleClose.bind(this)}></MdClose>
             </div>
-            <ParkadeInfo parkade={this.state.currentParkade} />
+            {this.state.spots && 
+            <ParkadeInfo parkade={this.state.currentParkade} price={this.state.spots[0].cents_per_kwh}/> }
             <div className="spot-info">
               { this.state.spots && <ParkingSpotDisplay spots={this.state.spots}/> }
             </div>
