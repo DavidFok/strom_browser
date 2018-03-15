@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import FaWheelchair from 'react-icons/lib/fa/wheelchair';
 
+const availability = (spot) => {
+  if (spot.in_use) return <p>In use</p>; 
+  else return <p>Available</p>;
+}
+
 function ParkingSpotDisplay(props) {
   let spots = props.spots.map((spot) => {
     return (
@@ -8,7 +13,7 @@ function ParkingSpotDisplay(props) {
         <header>
           <div>
             <p># {spot.spot_label}</p>
-            <p>Available</p>
+            {availability(spot)}
           </div>
           {spot.handicap && <FaWheelchair/> }
         </header>
