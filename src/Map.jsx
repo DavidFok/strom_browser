@@ -4,13 +4,8 @@ import { compose, withProps, withHandlers } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
-import FaBolt from 'react-icons/lib/fa/bolt';
-import FaCreditCardAlt from 'react-icons/lib/fa/credit-card-alt';
-import FaWheelchair from 'react-icons/lib/fa/wheelchair';
-import MdAccessTime from 'react-icons/lib/md/access-time';
-import MdLocationOn from 'react-icons/lib/md/location-on';
-import MdDirectionsCar from 'react-icons/lib/md/directions-car';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
+import ParkadeInfo from './components/ParkadeInfo.jsx';
 
 const MyMapComponent = compose(
   withProps({
@@ -110,7 +105,6 @@ class Map extends Component {
 
   render() {
     console.log('Rendering <Map/>');
-    let x = this.state.currentParkade;
 
     return (
       <div>
@@ -124,40 +118,13 @@ class Map extends Component {
             open={this.state.infoOpen}
             onRequestChange={(open) => this.setState({infoOpen: open})}
         >
-        { x &&
+        { this.state.currentParkade &&
           <div className="parkade-info">
             <div className="title">          
-              <h2> { x.name }</h2>
+              <h2> { this.state.currentParkade.name }</h2>
               <MdClose className="close-button" onClick={this.handleClose.bind(this)}></MdClose>
             </div>
-            <div>
-              <ul className="button-container">
-                <li><FaBolt/><br/>{ x.spot_count_regular - x.occupied_regular} available</li>
-                <li><FaWheelchair/><br/>{ x.spot_count_handicap - x.occupied_handicap} available</li>
-                <li><FaCreditCardAlt/><br/>$1.00/Kwh</li>  
-              </ul>
-              <ul>
-                <li>
-                  <MdAccessTime /> <strong>Open </strong> { x.open_time } Closes { x.close_time }
-                </li>
-                <li><MdDirectionsCar /> Total Spots: { x.spot_count_regular + x.spot_count_handicap}</li>
-                <li> 
-                  <table>
-                    <tr>
-                      <td>
-                        <MdLocationOn/>
-                      </td>
-                      <td>
-                        { x.street_line_1 }
-                        { x.street_line_2 } <br/>
-                        { x.city }, { x.province} { x.postal_code }
-                      </td>
-                    </tr>
-                  </table>
-                </li>
-                <li>{ x.notes }</li>
-              </ul>              
-            </div>
+            <ParkadeInfo parkade={this.state.currentParkade} />
             <div className="spot-info">
               { this.state.spots && <ParkingSpotDisplay spots={this.state.spots}/> }
             </div>

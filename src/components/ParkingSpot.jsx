@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import FaWheelchair from 'react-icons/lib/fa/wheelchair';
 
 function ParkingSpotDisplay(props) {
