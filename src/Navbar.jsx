@@ -12,20 +12,28 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      handicap: "grey"
     };
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
   
   handleClose = () => this.setState({open: false});
+
+  handicapColor = () => {
+    this.props.filterHandicap();
+    let color = this.state.handicap;
+    if (color === "grey") {
+      this.setState({handicap: "rgb(0, 188, 212"})
+    } else {
+      this.setState({handicap: "grey"})
+    }
+  }
   
   
   render() {
 
-    const style = {
-      marginRight: 20,
-    };
 
     console.log('Rendering <Navbar/>');
     return (
@@ -36,7 +44,7 @@ class Navbar extends Component {
             <p className="navbar-text"> Search here </p>
             <h1 className="icon-search"> <MdSearch /> </h1>
           </div>
-          <FloatingActionButton className="handicap-button" style={style} onClick={this.props.filterHandicap}>
+          <FloatingActionButton className="handicap-button" backgroundColor={this.state.handicap} onClick={this.handicapColor}>
               <MdAccessible />
           </FloatingActionButton>
         </nav>
