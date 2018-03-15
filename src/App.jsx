@@ -70,6 +70,15 @@ class App extends Component {
     console.log('outbound message vehicle: ', outMsgVcle);
   }
 
+  logout(token){
+    let outMsgVcle = {
+      type: 'logout',
+      data: token
+    }
+    this.socket.send(JSON.stringify(outMsgVcle));
+    console.log('outbound message vehicle: ', outMsgVcle);
+  }
+
   getSpotData(parkadeId) {
     let outMsgVcle = {
       type: 'spots',
@@ -124,7 +133,7 @@ class App extends Component {
             return(
               <div>
                 <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
-                <Navbar filterHandicap={this.filterHandicap.bind(this)}/>
+                <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)}/>
                 <SessionButton/>
               </div>
             );

@@ -31,6 +31,12 @@ class Navbar extends Component {
     }
   }
   
+  logout = () => {
+    this.handleClose();
+    let token = document.cookie.split('=');
+    this.props.logout(token[1]);
+    document.cookie = "userSession=" + null;
+  }
   
   render() {
 
@@ -68,7 +74,7 @@ class Navbar extends Component {
             onClick={this.handleClose} 
             primaryText="Sign Up"
             />
-          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+          <MenuItem onClick={this.logout}>Logout</MenuItem>
         </Drawer>
       </div>
     );
