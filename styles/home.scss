@@ -69,6 +69,10 @@ body {
   border-radius: 5px;
 }
 
+.session-button:hover {
+  background: rgb(20, 180, 255);
+}
+
 .session-button .container {
   position: relative;
   bottom: 4rem;
@@ -87,6 +91,10 @@ body {
 .icon-menu {
   color: grey;
   font-size: 6rem;
+}
+
+.icon-menu:hover {
+  cursor: pointer;
 }
 
 .icon-search {

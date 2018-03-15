@@ -6,6 +6,7 @@ import Menu from './Menu.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import LoginPage from './LoginPage.jsx';
 import SessionButton from './SessionButton.jsx';
+import SessionPage from './SessionPage.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends Component {
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log("receiving data: ", data);
+      console.log('receiving data: ', data);
       switch (data.route) {
         case 'parkadeData':
           let parkades = this.addShow(data.data);
@@ -32,10 +33,10 @@ class App extends Component {
           // add code here
           break;
         case 'spots':
-          if (data.type === "confirm") {
+          if (data.type === 'confirm') {
             this.setState({spots: data.data});
           } else {
-            console.log("error in receiving spots: ", data.data);
+            console.log('error in receiving spots: ', data.data);
           }
           break;
       }
@@ -44,7 +45,7 @@ class App extends Component {
 
   newUser(user) {
     let outboundMessageVehicle = {
-      type: "register",
+      type: 'register',
       data: user
     };
 
@@ -55,7 +56,7 @@ class App extends Component {
   
   login(user) {
     let outMsgVcle = {
-      type: "login",
+      type: 'login',
       data: user
     }
     // send login notification to server
@@ -65,7 +66,7 @@ class App extends Component {
 
   getSpotData(parkadeId) {
     let outMsgVcle = {
-      type: "spots",
+      type: 'spots',
       data: parkadeId
     }
     this.socket.send(JSON.stringify(outMsgVcle));
@@ -106,6 +107,11 @@ class App extends Component {
           <Route path='/register' exact render={() => {
             return(
               <SignUpPage newUser={this.newUser.bind(this)}/>
+            );
+          }}/>
+          <Route path='/session' exact render = {() => {
+            return(
+              <SessionPage />
             );
           }}/>
           <Route path='/' exact render={() => {
