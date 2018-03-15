@@ -9,6 +9,7 @@ import ParkadeInfo from './components/ParkadeInfo.jsx';
 
 const defaultMapOptions = {
   disableDefaultUI: true,
+  zoomControl: true,
 };
 
 const MyMapComponent = compose(
