@@ -114,7 +114,13 @@ class SessionPage extends React.Component {
             <p>Enter a charing station number to begin charging</p>
               <div className="session-input">
                 <MdLocationOn />
-                <TextField hintText="Enter a charging station number" />
+                <TextField
+                  // onSubmit={this.processForm}
+                  hintText="Enter a charging station number"
+                  // value={this.state.value}
+                  // onChange={this.onChange}
+                  // errorText={this.state.errorText}
+                />
               </div>
           </div>
       </div>
