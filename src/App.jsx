@@ -39,6 +39,12 @@ class App extends Component {
             console.log('error in receiving spots: ', data.data);
           }
           break;
+        case 'loginData':
+          if (data.type === "confirm") {
+            document.cookie = "userSession=" + data.data.session_token.fulfillmentValue;
+          }
+          console.log("this is document.cookie: ", document.cookie);
+          break;
       }
     }
   }
