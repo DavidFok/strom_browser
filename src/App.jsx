@@ -25,7 +25,8 @@ class App extends Component {
       console.log("receiving data: ", data);
       switch (data.route) {
         case 'parkadeData':
-          this.setState({ parkades: data.data});
+          let parkades = this.addShow(data.data);
+          this.setState({ parkades: parkades});
           break;
         case 'registerData':
           // add code here
@@ -36,6 +37,7 @@ class App extends Component {
           } else {
             console.log("error in receiving spots: ", data.data);
           }
+          break;
       }
     }
   }
@@ -69,6 +71,29 @@ class App extends Component {
     this.socket.send(JSON.stringify(outMsgVcle));
   }
 
+  addShow(parkades) {
+    let withShowKey = [];
+    parkades.forEach((parkade) => {
+      parkade.show = true;
+      withShowKey.push(parkade);
+    });
+    return withShowKey; 
+  }
+
+  filterHandicap() {
+    let parkades = this.state.parkades;
+    let filtered = [];
+    parkades.forEach((parkade) => {
+      if (parkade.spot_count_handicap === 0) {
+        parkade.show = !parkade.show;
+        filtered.push(parkade);
+      } else {
+        filtered.push(parkade);
+      }
+    })
+    this.setState({ parkades: filtered });
+  }
+  
   render() {
     return (
       <Router>
@@ -87,7 +112,7 @@ class App extends Component {
             return(
               <div>
                 <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
-                <Navbar/>
+                <Navbar filterHandicap={this.filterHandicap.bind(this)}/>
                 <SessionButton/>
               </div>
             );

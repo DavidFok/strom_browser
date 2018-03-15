@@ -36,7 +36,7 @@ class Navbar extends Component {
             <p className="navbar-text"> Search here </p>
             <h1 className="icon-search"> <MdSearch /> </h1>
           </div>
-          <FloatingActionButton className="handicap-button" style={style}>
+          <FloatingActionButton className="handicap-button" style={style} onClick={this.props.filterHandicap}>
               <MdAccessible />
           </FloatingActionButton>
         </nav>

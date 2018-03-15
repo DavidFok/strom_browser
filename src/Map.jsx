@@ -22,15 +22,15 @@ const MyMapComponent = compose(
     defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
   >
     {props.parkades.map(function(parkade) {
-        return (
+      return (
           <Marker 
             position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
             onClick={() => props.onMarkerClick(parkade)} 
             options={props.iconColor(parkade)}
+            visible={parkade.show}
           />
-        )
-      })
-    }
+      )
+    })}
   </GoogleMap>
 )
 
