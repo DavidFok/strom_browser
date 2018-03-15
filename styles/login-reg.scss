@@ -1,0 +1,48 @@
+.login-reg-nav {
+  color: whitesmoke;
+  display: flex;
+  background-color: rgb(33, 150, 243);
+  border-bottom: 1px solid lightgrey;
+  box-shadow: 0 4px 2px -2px lightgrey;
+  margin: 0px;
+  padding: 10px 50px 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  p {
+    font-size: 3rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+.login-reg-nav .close-button {
+  position: fixed;
+}
+
+.login_form{
+  max-width: 500px;
+  margin: 200px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.signup_form{
+  max-width: 500px;
+  margin: 200px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .signup_form {
+    margin: 0px auto;
+    margin-top: 90px;
+  }
+  .login_form {
+    margin-top: 300px auto;
+  }
+  .login-reg-nav p {
+    font-size: 4rem;
+  }
+}
