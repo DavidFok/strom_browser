@@ -111,10 +111,10 @@ class SessionPage extends React.Component {
           </nav>
       
           <div className="session-container">
-            <p>Enter a charing station numner to begin charging</p>
+            <p>Enter a charing station number to begin charging</p>
               <div className="session-input">
                 <MdLocationOn />
-                <TextField hintText="Hint Text" />
+                <TextField hintText="Enter a charging station number" />
               </div>
           </div>
       </div>
