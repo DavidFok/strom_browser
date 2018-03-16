@@ -22,6 +22,11 @@ class App extends Component {
     this.socket = new WebSocket('ws://localhost:3001/');
     this.socket.onopen = (event) => {
       console.log('connected to ws-server');
+      const outboundMessageVehicle = {
+        type: 'session token',
+        data: this.state.session_token
+      }
+      this.socket.send(JSON.stringify(outboundMessageVehicle));
     }
 
     this.socket.onmessage = (event) => {

@@ -30,13 +30,13 @@ const MyMapComponent = compose(
   >
     {props.parkades.map(function(parkade) {
       return (
-          <Marker 
-            position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
-            onClick={() => props.onMarkerClick(parkade)} 
-            options={props.iconColor(parkade)}
-            visible={parkade.show}
-          />
-      )
+        <Marker 
+          position={{ lat: parseFloat(parkade.latitude), lng: parseFloat(parkade.longitude) }} 
+          onClick={() => props.onMarkerClick(parkade)} 
+          options={props.iconColor(parkade)}
+          visible={parkade.show}
+        />
+      );
     })}
   </GoogleMap>
 )

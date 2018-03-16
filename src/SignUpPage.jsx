@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import SignUpForm from './components/SignUpForm.jsx';
 import { Redirect } from 'react-router';
 
-
 class SignUpPage extends React.Component {
   /**
    * Class constructor.
