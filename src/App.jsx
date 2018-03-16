@@ -118,9 +118,11 @@ class App extends Component {
   }
 
   sessionRequest(sesNum) {
+    let cookie = document.cookie.split("=");
     let outMsgVcle = {
       type: 'session request',
-      data: sesNum
+      data: sesNum,
+      cookie: cookie[1]
     }
     // send login notification to server
     this.socket.send(JSON.stringify(outMsgVcle));
