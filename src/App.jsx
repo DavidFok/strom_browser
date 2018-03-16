@@ -8,6 +8,7 @@ import LoginPage from './LoginPage.jsx';
 import SessionButton from './SessionButton.jsx';
 import SessionPage from './SessionPage.jsx';
 
+// dummy comment.
 class App extends Component {
   constructor(props) {
     super(props);
