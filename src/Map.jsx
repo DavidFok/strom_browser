@@ -102,6 +102,7 @@ class Map extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.parkades !== this.props.parkades) {
+      console.log(this.props.parkades);
       this.setState({parkades: this.props.parkades})
     }
     // when Map.jsx receives new parking spots
