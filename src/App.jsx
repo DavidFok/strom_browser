@@ -13,7 +13,8 @@ class App extends Component {
     super(props);
     this.state = { 
       loggedIn: false,
-      session: null
+      session: null,
+      session_token: this.getSessionTokenFromCookies()
     };
   }
 
@@ -53,6 +54,22 @@ class App extends Component {
           break;
       }
     }
+  }
+
+  getSessionTokenFromCookies() {
+    const cookieString = document.cookie;
+    const cookieArray = cookieString.split(";");
+    let sessionToken = null;
+    cookieArray.forEach((element) => {
+      const elementArray = element.split("=");
+      const key = elementArray[0];
+      const value = elementArray[1];
+      if (key === "userSession") {
+        sessionToken = value;
+      }
+    });
+    console.log("session token is: ", sessionToken);
+    return sessionToken;
   }
 
   newUser(user) {
