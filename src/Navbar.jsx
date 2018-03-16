@@ -84,8 +84,6 @@ class Navbar extends Component {
           </FloatingActionButton>
         </nav>
            
-
-
         <Drawer
           docked={false}
           width={250}

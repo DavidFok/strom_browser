@@ -11,7 +11,10 @@ import SessionPage from './SessionPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false };
+    this.state = { 
+      loggedIn: false,
+      session: null
+    };
   }
 
   componentDidMount() {
@@ -44,6 +47,9 @@ class App extends Component {
             document.cookie = "userSession=" + data.data.session_token.fulfillmentValue;
           }
           console.log("this is document.cookie: ", document.cookie);
+          break;
+        case 'session':
+          this.setState({ session: {status: data.type, msg: data.data} });
           break;
       }
     }
@@ -110,6 +116,16 @@ class App extends Component {
     })
     this.setState({ parkades: filtered });
   }
+
+  sessionRequest(sesNum) {
+    let outMsgVcle = {
+      type: 'session request',
+      data: sesNum
+    }
+    // send login notification to server
+    this.socket.send(JSON.stringify(outMsgVcle));
+    console.log('outbound message vehicle: ', outMsgVcle);
+  }
   
   render() {
     return (
@@ -127,7 +143,10 @@ class App extends Component {
           }}/>
           <Route path='/session' exact render = {() => {
             return(
-              <SessionPage />
+              <SessionPage 
+                sessionReq={this.sessionRequest.bind(this)} 
+                response={this.state.session}
+              />
             );
           }}/>
           <Route path='/' exact render={() => {
