@@ -42,7 +42,6 @@ class SessionPage extends React.Component {
   }
 
   processResponse() {
-    console.log("sad");
     if (this.props.response.status === "reject") {
       this.setState({ 
         errMsg: this.props.response.msg,
