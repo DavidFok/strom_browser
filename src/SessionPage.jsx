@@ -57,46 +57,13 @@ class SessionPage extends React.Component {
   }
 
   handleClose = () => {
-    this.setState({modalOpen: false, redirect: true});
+    this.setState({
+      modalOpen: false,
+      redirect: true,
+      value: '',
+      errMsg: ''
+    });
   };
-
-  // validateForm() {
-  //   // shortlist form fields
-  //   let check_empty_fields = true;
-  //   const user = this.state.user;
-  //   // required fields
-  //   const required_fields = this.state.required_fields;
-
-  //   required_fields.forEach((key, index) => {
-  //     if (user[key] === ""){
-  //       check_empty_fields = false;
-  //     }
-  //   });
-
-  //   // return true for valid and false for invalid signup request
-  //   return (check_empty_fields);
-  // }
-
-  // displayFormError() {
-  //   // checks form for missing fields and outputs error message below corresponding input field
-  //   const errorText = this.state.errorText;
-
-  //   const user = this.state.user;
-  //   // required fields
-  //   const required_fields = this.state.required_fields;
-
-  //   required_fields.forEach((key, index) => {
-  //     if (user[key] === ""){
-  //       errorText[key] = "this field is required";
-  //     } else {
-  //       errorText[key] = "";
-  //     }
-  //   });
-    
-  //   this.setState({
-  //     errorText: errorText
-  //   });
-  // }
   
   render() {
     const style = {

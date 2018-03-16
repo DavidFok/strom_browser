@@ -179,7 +179,7 @@ class App extends Component {
               <div>
                 <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
                 <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)} loggedIn={this.state.loggedIn}/>
-                <SessionButton/>
+              { !this.state.session && <SessionButton/> }
               </div>
             );
           }}/>
