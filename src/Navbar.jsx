@@ -35,7 +35,7 @@ class Navbar extends Component {
     this.handleClose();
     let token = document.cookie.split('=');
     this.props.logout(token[1]);
-    document.cookie = "userSession=" + null;
+    document.cookie = "userSession=null";
   }
   
   buttons = () => {

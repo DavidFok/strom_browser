@@ -25,7 +25,8 @@ class App extends Component {
       console.log('connected to ws-server');
       const outboundMessageVehicle = {
         type: 'session token',
-        data: this.state.session_token
+        data: null,
+        cookie: this.state.session_token
       }
       this.socket.send(JSON.stringify(outboundMessageVehicle));
     }
@@ -43,26 +44,46 @@ class App extends Component {
           break;
         case 'spots':
           if (data.type === 'confirm') {
-            this.setState({spots: data.data});
+            this.setState({ spots: data.data });
           } else {
             console.log('error in receiving spots: ', data.data);
           }
           break;
         case 'loginData':
           if (data.type === "confirm") {
+            // if the server approves the token
             this.setState({ loggedIn: true });
             document.cookie = "userSession=" + data.data.session_token.fulfillmentValue;
+          } else {
+            // if the server rejects the token
+            // clear cookies
+            this.removeSessionTokenFromCookie();
+            // set login state to false
+            this.setState({ loggedIn: false });
           }
           console.log("this is document.cookie: ", document.cookie);
           break;
         case 'session':
           this.setState({ session: {status: data.type, msg: data.data} });
           break;
+
+        case 'session token': 
+          if (data.type === "confirm") {
+            // if the server has validated the session token
+            this.setState({ loggedIn: true });
+          } else {
+            // if the server has rejected the session token
+            // clear cookies
+            this.removeSessionTokenFromCookie();
+            // set login state to false
+            this.setState({ loggedIn: false });
+          }
       }
     }
   }
 
   getSessionTokenFromCookies() {
+    console.log("document.cookie within getSessionToken: ", document.cookie);
     const cookieString = document.cookie;
     const cookieArray = cookieString.split(";");
     let sessionToken = null;
@@ -74,8 +95,23 @@ class App extends Component {
         sessionToken = value;
       }
     });
-    console.log("session token is: ", sessionToken);
+    console.log("session token within getsessiontokenfromcookie is: ", sessionToken);
     return sessionToken;
+  }
+
+  // sets the document cookie field for userSession to null
+  removeSessionTokenFromCookie() {
+    const cookieString = document.cookie;
+    const cookieArray = cookieString.split(";");
+
+    const newCookieArray = cookieArray.map((cookieField) => {
+      if (cookieField.startsWith('userSession')) {
+        cookieField = "userSession=null";
+      }
+    });
+
+    console.log("cookieObject: ", newCookieArray.join(";"));
+    document.cookie = newCookieArray.join(";");
   }
 
   newUser(user) {
