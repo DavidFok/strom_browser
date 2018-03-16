@@ -11,8 +11,7 @@ import SessionPage from './SessionPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { loggedIn: false };
   }
 
   componentDidMount() {
@@ -41,6 +40,7 @@ class App extends Component {
           break;
         case 'loginData':
           if (data.type === "confirm") {
+            this.setState({ loggedIn: true });
             document.cookie = "userSession=" + data.data.session_token.fulfillmentValue;
           }
           console.log("this is document.cookie: ", document.cookie);
@@ -75,6 +75,7 @@ class App extends Component {
       type: 'logout',
       data: token
     }
+    this.setState({ loggedIn: false });
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);
   }
@@ -133,7 +134,7 @@ class App extends Component {
             return(
               <div>
                 <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
-                <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)}/>
+                <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)} loggedIn={this.state.loggedIn}/>
                 <SessionButton/>
               </div>
             );

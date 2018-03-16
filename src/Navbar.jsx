@@ -38,10 +38,39 @@ class Navbar extends Component {
     document.cookie = "userSession=" + null;
   }
   
+  buttons = () => {
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <MenuItem 
+            onClick={this.handleClose}
+            >Account Settings</MenuItem>
+          <MenuItem 
+            onClick={this.logout}
+            >Logout</MenuItem>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <MenuItem 
+            containerElement={<Link to="/login" />} 
+            onClick={this.handleClose} 
+            primaryText="Login"
+          />
+          <MenuItem 
+            containerElement={<Link to="/register" />} 
+            onClick={this.handleClose} 
+            primaryText="Sign Up"
+            />
+        </div>
+      )
+    }
+  }
+
   render() {
-
-
     console.log('Rendering <Navbar/>');
+
     return (
       <div>
         <nav className="navbar">
@@ -63,18 +92,7 @@ class Navbar extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open: open})}
         >
-          <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
-          <MenuItem 
-            containerElement={<Link to="/login" />} 
-            onClick={this.handleClose} 
-            primaryText="Login"
-          />
-          <MenuItem 
-            containerElement={<Link to="/register" />} 
-            onClick={this.handleClose} 
-            primaryText="Sign Up"
-            />
-          <MenuItem onClick={this.logout}>Logout</MenuItem>
+          {this.buttons()}
         </Drawer>
       </div>
     );
