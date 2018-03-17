@@ -140,10 +140,10 @@ class App extends Component {
       type: 'logout',
       data: token
     }
-    this.setState({ loggedIn: false });
+    this.setState({ loggedIn: false, session: null });
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);
-  }
+  } 
 
   getSpotData(parkadeId) {
     let outMsgVcle = {
