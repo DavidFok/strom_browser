@@ -47,7 +47,7 @@ class LoginForm extends Component{
           /><br />
           <br />
       
-          <RaisedButton onClick={this.props.onSubmit} label="Primary" type="submit" primary={true} style={style} />
+          <RaisedButton onClick={this.props.onSubmit} label="Submit" type="submit" primary={true} style={style} />
         </Card>
       </div>
     );

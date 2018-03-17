@@ -1,18 +1,42 @@
 .session-container {
-  padding-top: 150px;
+  padding-top: 15px;
   margin: auto;
   width: 400px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 15px;
   font-family: 'Open Sans', sans-serif;
 }
 
 .session-container .session-input {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
   justify-content: center;
   font-size: 5rem;
   padding: 5px 30px;
   display: inline-block;
   border-radius: 3px;
+}
+
+.session-card{
+  max-width: 500px;
+  margin: 200px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .session-card {
+    margin: 0px auto;
+    margin-top: 100px auto;
+    padding: 0px;
+  }
+  .session-container {
+    font-size: 15px;
+    margin: 0px;
+    margin-top: 250px;
+    position: absolute;
+  }
+  .session-container .session-input {
+    font-size: 5rem;
+  }
 }
