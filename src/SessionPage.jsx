@@ -7,6 +7,7 @@ import MdClose from 'react-icons/lib/md/close';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 class SessionPage extends React.Component {
   constructor(props) {
@@ -92,31 +93,34 @@ class SessionPage extends React.Component {
               <Link to="/"> <MdClose className="close-button" color="whitesmoke" /> </Link>
             </nav>
         
-            <div className="session-container">
-              <p>Enter a charing station number to begin charging</p>
-                <div className="session-input">
-                  <MdLocationOn />
-                  <TextField
-                    hintText="Enter a charging station number"
-                    value={this.state.value}
-                    onChange={this.onChange.bind(this)}
-                    errorText={this.state.errMsg}
-                  />
-                </div>
-                <RaisedButton onClick={this.processReq.bind(this)} label="Submit" primary={true} style={style} />
-            </div>
-            {/* The success modal */}
-            <div>
-              <Dialog
-                title="Session started!"
-                actions={actions}
-                modal={false}
-                open={this.state.modalOpen}
-                onRequestClose={this.handleClose}
-              >
-                Your 30 minute charging session has begun.
-              </Dialog>
-            </div>
+            <Card className="session-card">
+              <div className="session-container">
+                <p>Enter a charing station number to begin charging</p>
+                  <div className="session-input">
+                    <MdLocationOn />
+                    <TextField
+                      hintText="Enter a charging station number"
+                      value={this.state.value}
+                      onChange={this.onChange.bind(this)}
+                      errorText={this.state.errMsg}
+                    />
+                  </div>
+                  <RaisedButton onClick={this.processReq.bind(this)} label="Submit" primary={true} style={style} />
+              </div>
+              {/* The success modal */}
+              <div>
+                <Dialog
+                  title="Session started!"
+                  actions={actions}
+                  modal={false}
+                  open={this.state.modalOpen}
+                  onRequestClose={this.handleClose}
+                >
+                  Your 30 minute charging session has begun.
+                </Dialog>
+              </div>
+            </Card>
+
         </div>
         );
       };
