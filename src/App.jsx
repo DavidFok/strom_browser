@@ -50,10 +50,10 @@ class App extends Component {
           }
           break;
         case 'loginData':
-          if (data.type === "confirm") {
+          if (data.type === 'confirm') {
             // if the server approves the token
             this.setState({ loggedIn: true });
-            document.cookie = "userSession=" + data.data.session_token.fulfillmentValue;
+            document.cookie = 'userSession=' + data.data.session_token.fulfillmentValue;
           } else {
             // if the server rejects the token
             // clear cookies
@@ -61,14 +61,14 @@ class App extends Component {
             // set login state to false
             this.setState({ loggedIn: false });
           }
-          console.log("this is document.cookie: ", document.cookie);
+          console.log('this is document.cookie: ', document.cookie);
           break;
         case 'session':
           this.setState({ session: {status: data.type, msg: data.data} });
           break;
 
         case 'session token': 
-          if (data.type === "confirm") {
+          if (data.type === 'confirm') {
             // if the server has validated the session token
             this.setState({ loggedIn: true });
           } else {
@@ -83,35 +83,35 @@ class App extends Component {
   }
 
   getSessionTokenFromCookies() {
-    console.log("document.cookie within getSessionToken: ", document.cookie);
+    console.log('document.cookie within getSessionToken: ', document.cookie);
     const cookieString = document.cookie;
-    const cookieArray = cookieString.split(";");
+    const cookieArray = cookieString.split(';');
     let sessionToken = null;
     cookieArray.forEach((element) => {
-      const elementArray = element.split("=");
+      const elementArray = element.split('=');
       const key = elementArray[0];
       const value = elementArray[1];
-      if (key === "userSession") {
+      if (key === 'userSession') {
         sessionToken = value;
       }
     });
-    console.log("session token within getsessiontokenfromcookie is: ", sessionToken);
+    console.log('session token within getsessiontokenfromcookie is: ', sessionToken);
     return sessionToken;
   }
 
   // sets the document cookie field for userSession to null
   removeSessionTokenFromCookie() {
     const cookieString = document.cookie;
-    const cookieArray = cookieString.split(";");
+    const cookieArray = cookieString.split(';');
 
     const newCookieArray = cookieArray.map((cookieField) => {
       if (cookieField.startsWith('userSession')) {
-        cookieField = "userSession=null";
+        cookieField = 'userSession=null';
       }
     });
 
-    console.log("cookieObject: ", newCookieArray.join(";"));
-    document.cookie = newCookieArray.join(";");
+    console.log('cookieObject: ', newCookieArray.join(';'));
+    document.cookie = newCookieArray.join(';');
   }
 
   newUser(user) {
@@ -177,7 +177,7 @@ class App extends Component {
   }
 
   sessionRequest(sesNum) {
-    let cookie = document.cookie.split("=");
+    let cookie = document.cookie.split('=');
     let outMsgVcle = {
       type: 'session request',
       data: sesNum,
@@ -190,37 +190,37 @@ class App extends Component {
   
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route path='/login' exact render = {() => {
-            return(
-              <LoginPage login={this.login.bind(this)}/>
-            );
-          }}/>
-          <Route path='/register' exact render={() => {
-            return(
-              <SignUpPage newUser={this.newUser.bind(this)}/>
-            );
-          }}/>
-          <Route path='/session' exact render = {() => {
-            return(
-              <SessionPage 
-                sessionReq={this.sessionRequest.bind(this)} 
-                response={this.state.session}
-              />
-            );
-          }}/>
-          <Route path='/' exact render={() => {
-            return(
-              <div>
-                <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
-                <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)} loggedIn={this.state.loggedIn}/>
-              { !this.state.session && <SessionButton/> }
-              </div>
-            );
-          }}/>
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route path='/login' exact render = {() => {
+              return(
+                <LoginPage login={this.login.bind(this)}/>
+              );
+            }}/>
+            <Route path='/register' exact render={() => {
+              return(
+                <SignUpPage newUser={this.newUser.bind(this)}/>
+              );
+            }}/>
+            <Route path='/session' exact render = {() => {
+              return(
+                <SessionPage 
+                  sessionReq={this.sessionRequest.bind(this)} 
+                  response={this.state.session}
+                />
+              );
+            }}/>
+            <Route path='/' exact render={() => {
+              return(
+                <div>
+                  <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
+                  <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)} loggedIn={this.state.loggedIn}/>
+                { !this.state.session && <SessionButton/> }
+                </div>
+              );
+            }}/>
+          </Switch>
+        </Router>
     );
   }
 }

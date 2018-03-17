@@ -6,6 +6,9 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MdAccessible from 'react-icons/lib/md/accessible';
+import MdAccessTime from 'react-icons/lib/md/access-time';
+import FaBolt from 'react-icons/lib/fa/bolt';
+import MdDirectionsCar from 'react-icons/lib/md/directions-car';
 
 class Navbar extends Component {
 
@@ -90,6 +93,21 @@ class Navbar extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open: open})}
         >
+          <div className="session-info">
+            <ul>
+              <li>
+                <FaBolt className="info-icons"/>
+                <p>70%</p>
+              </li>
+              <li>
+                <MdDirectionsCar className="car-icon" />
+              </li>
+              <li>
+                <MdAccessTime className="info-icons"/>
+                <p>19:58</p>
+              </li>
+            </ul>
+          </div>
           {this.buttons()}
         </Drawer>
       </div>
