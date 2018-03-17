@@ -16,8 +16,25 @@ class Navbar extends Component {
     super(props);
     this.state = {
       open: false,
-      handicap: "grey"
+      handicap: "grey",
+      level: 70,
+      rate: 100
     };
+  }
+
+  countUpCharge() {
+    const increase = this.state.level + 1;
+    this.setState ({
+      level: increase
+    })
+    if (this.state.level === 100) {
+        clearInterval(this.timer);
+        return
+    }
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => this.countUpCharge(), this.state.rate);
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
@@ -40,7 +57,8 @@ class Navbar extends Component {
     this.props.logout(token[1]);
     document.cookie = "userSession=null";
   }
-  
+
+
   buttons = () => {
     if (this.props.loggedIn) {
       return (
@@ -97,7 +115,7 @@ class Navbar extends Component {
             <ul>
               <li>
                 <FaBolt className="info-icons"/>
-                <p>70%</p>
+                <p>{this.state.level}%</p>
               </li>
               <li>
                 <MdDirectionsCar className="car-icon" />
