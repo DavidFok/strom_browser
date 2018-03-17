@@ -37,7 +37,7 @@ class SignUpForm extends Component{
         <h1>Sign Up</h1>
 
           <TextField
-          hintText="first name"
+          hintText="First name"
           name="first_name"
           value={this.props.user.first_name}
           onChange={this.props.onChange}
@@ -46,7 +46,7 @@ class SignUpForm extends Component{
           <br />
 
           <TextField
-          hintText="last name"
+          hintText="Last name"
           name="last_name"
           value={this.props.user.last_name}
           onChange={this.props.onChange}
@@ -54,7 +54,7 @@ class SignUpForm extends Component{
           /><br />
           <br />
 
-          <TextField
+          {/* <TextField
           hintText="street_1"
           name="street_1"
           value={this.props.user.street_1}
@@ -106,10 +106,19 @@ class SignUpForm extends Component{
           onChange={this.props.onChange}
           errorText={this.props.errorText.country}
           /><br />
+          <br /> */}
+
+          <TextField
+          hintText="Phone number"
+          name="phone_number"
+          value={this.props.user.phone_number}
+          onChange={this.props.onChange}
+          errorText={this.props.errorText.phone_number}
+          /><br />
           <br />
 
           <TextField
-          hintText="email"
+          hintText="Email Address"
           name="email"
           value={this.props.user.email}
           onChange={this.props.onChange}
@@ -118,7 +127,7 @@ class SignUpForm extends Component{
           <br />
 
           <TextField
-          hintText="password"
+          hintText="Password"
           name="password"
           value={this.props.user.password}
           onChange={this.props.onChange}
@@ -128,7 +137,7 @@ class SignUpForm extends Component{
           <br />
 
           <TextField
-          hintText="confirm password"
+          hintText="Confirm password"
           name="password_confirmation"
           value={this.props.user.password_confirmation}
           onChange={this.props.onChange}

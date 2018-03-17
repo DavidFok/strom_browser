@@ -18,12 +18,7 @@ class SignUpPage extends React.Component {
         password_confirmation: '',
         first_name: '',
         last_name: '',
-        street_1: '',
-        street_2: '',
-        city: '',
-        province: '',
-        postal_code: '',
-        country: ''
+        phone_number: ''
       },
       user: {
         email: '',
@@ -31,15 +26,11 @@ class SignUpPage extends React.Component {
         password_confirmation: '',
         first_name: '',
         last_name: '',
-        street_1: '',
-        street_2: '',
-        city: '',
-        province: '',
-        postal_code: '',
-        country: '',
+        phone_number: '',
         handicap: false
       },
-      required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "street_1", "city", "province", "postal_code", "country"],
+      // required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "street_1", "city", "province", "postal_code", "country"],
+      required_fields: ["email", "password", "password_confirmation", "first_name", "last_name", "phone_number"],
       redirect: false
     };
 
@@ -104,7 +95,7 @@ class SignUpPage extends React.Component {
     const required_fields = this.state.required_fields;
 
     required_fields.forEach((key, index) => {
-      if (user[key] === ""){
+      if (user[key] === "") {
         check_empty_fields = false;
       }
     });
