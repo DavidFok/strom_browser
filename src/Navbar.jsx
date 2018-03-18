@@ -56,10 +56,6 @@ class Navbar extends Component {
     })
   }
 
-  componentDidMount() {
-
-  }
-
   componentDidUpdate() {
     console.log("component is updating!, endTime is : ", this.props.endTime);
     if (this.props.endTime !== this.state.endTime) {
