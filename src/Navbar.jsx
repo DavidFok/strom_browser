@@ -40,7 +40,7 @@ class Navbar extends Component {
 
   timerCount() {
     const start = moment.utc();
-    const endTime = this.state.endTime;
+    const endTime = moment(this.state.endTime);
     console.log('this is endTime from within timerCount:', endTime);
     const minuteDiff = endTime.diff(start, 'minutes');
     const secondDiff = endTime.diff(start, 'seconds') % 60;
@@ -57,19 +57,25 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    if (this.state.endTime !== null) {
-      this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
-      this.timer = setInterval(() => this.timerCount(), 1000);
-    }
+    // if (this.state.endTime !== null) {
+    //   this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
+    //   this.timer = setInterval(() => this.timerCount(), 1000);
+    // }
   }
 
 
   componentDidUpdate() {
     if (this.props.endTime !== this.state.endTime) {
       this.setState({ endTime: this.props.endTime })
-      if (this.state.endTime !== null) {
-        this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
-        this.timer = setInterval(() => this.timerCount(), 1000);
+      if (this.props.endTime !== null) {
+        console.log("route1");
+        this.setState({ endTime: this.props.endTime }, () => {
+          this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
+          this.timer = setInterval(() => this.timerCount(), 1000);
+        });
+      } else {
+        console.log("route2");
+        this.setState({ endTime: this.props.endTime });        
       }
     }
   }
