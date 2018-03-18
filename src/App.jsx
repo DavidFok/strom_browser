@@ -64,7 +64,13 @@ class App extends Component {
           console.log('this is document.cookie: ', document.cookie);
           break;
         case 'session':
-          this.setState({ session: {status: data.type, msg: data.data} });
+          this.setState({ 
+            session: {
+              status: data.type,
+              msg: data.data.note,
+              endTime: data.data.endTime
+            } 
+          });
           break;
 
         case 'session token': 
