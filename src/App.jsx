@@ -48,6 +48,7 @@ class App extends Component {
         case 'spots':
           if (data.type === 'confirm') {
             this.setState({ spots: data.data });
+            console.log("data.data: ", data.data);
           } else {
             console.log('error in receiving spots: ', data.data);
           }

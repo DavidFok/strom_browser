@@ -12,15 +12,15 @@ class ParkingSpotDisplay extends Component {
     };
   }
 
-
-  timerCount() {
+  timerCount(endTimeStamp) {
     const start = moment.utc();
-    const endTime = moment(this.state.endTime);
+    const endTime = moment(endTimeStamp);
     // console.log('this is endTime from within timerCount:', endTime);
     const minuteDiff = endTime.diff(start, 'minutes');
-    this.setState ({
-      minuteString: minuteDiff
-    })
+    // this.setState ({
+    //   minuteString: minuteDiff
+    // })
+    return minuteDiff;
   }
 
   // componentDidUpdate() {
@@ -40,9 +40,15 @@ class ParkingSpotDisplay extends Component {
 
   render() {
     const availability = (spot) => {
-    if (spot.in_use) return (<p>{this.state.times[spot.spot_label]}</p>); 
-    else return (<p>Available</p>);
-    };
+      if (spot.lastSession.length > 0) {
+        console.log("==========SPOT.LASTSESSION: ", spot.lastSession);
+        const endTimeStamp = spot.lastSession[0].charge_end;
+        const minutesLeft = this.timerCount(endTimeStamp);
+        return (<p>{minutesLeft}</p>); 
+      } else {
+        return (<p>Available</p>);
+      };
+    }
     
     let times = this.state.times;
 
