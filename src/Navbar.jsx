@@ -9,6 +9,8 @@ import MdAccessible from 'react-icons/lib/md/accessible';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 import FaBolt from 'react-icons/lib/fa/bolt';
 import MdDirectionsCar from 'react-icons/lib/md/directions-car';
+const moment = require('moment');
+
 
 class Navbar extends Component {
 
@@ -18,7 +20,10 @@ class Navbar extends Component {
       open: false,
       handicap: "grey",
       level: 70,
-      rate: 100
+      rate: 5000,
+      endTime: moment().add(30, "minutes"),
+      minuteString: "",
+      secondString: ""
     };
   }
 
@@ -28,13 +33,35 @@ class Navbar extends Component {
       level: increase
     })
     if (this.state.level === 100) {
-        clearInterval(this.timer);
+        clearInterval(this.chargeTime);
         return
     }
   }
 
+  timerCount() {
+    const start = moment.utc();
+    const endTime = this.state.endTime;
+    const minuteDiff = endTime.diff(start, 'minutes');
+    const secondDiff = endTime.diff(start, 'seconds') % 60;
+    let secondDiffString;
+    if (secondDiff < 10) {
+      secondDiffString = `0${secondDiff}`;
+    } else {
+      secondDiffString = `${secondDiff}`;
+    }
+    this.setState ({
+      minuteString: minuteDiff,
+      secondString: secondDiffString
+    })
+    // if (this.state.level === 100) {
+    //     clearInterval(this.timer);
+    //     return
+    // }
+  }
+
   componentDidMount() {
-    this.timer = setInterval(() => this.countUpCharge(), this.state.rate);
+    this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
+    this.timer = setInterval(() => this.timerCount(), 1000);
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
@@ -122,7 +149,7 @@ class Navbar extends Component {
               </li>
               <li>
                 <MdAccessTime className="info-icons"/>
-                <p>19:58</p>
+                <p>{this.state.minuteString}:{this.state.secondString}</p>
               </li>
             </ul>
           </div>
