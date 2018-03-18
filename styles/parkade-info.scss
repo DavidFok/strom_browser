@@ -11,11 +11,17 @@ li{
 }
 
 .close-button {
-  font-size: 9rem;
+  font-size: 8rem;
   position: absolute;
   display: inline;
   top: 5px;
   right: 5px;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover{
+  color: darkgrey;
+  cursor: pointer;
 }
 
 @media (min-width: 576px) {
@@ -75,28 +81,39 @@ li{
 
   li{
     margin: 8px;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 8px;
     width: 44%;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0;
     height: auto;
-    background-color: #e9eff1;
+    // background-color: #e9eff1;
+    background-color: #FCFCFC;
+    box-shadow: 0 4px 2px -2px lightgrey;
+    transition: box-shadow 0.3s ease;
+
+    div {
+      width: 50%;
+    }
 
     header{
       position: relative;
       border-bottom: 1px solid grey;
       padding: 3px 5px;
+      background-color: rgb(33, 150, 243);
+      color: whitesmoke;
+      font-weight: bold;
+      border-radius: 8px 8px 0px 0px;
 
       div {
-        width: 50%;
+        width: 100%;
       }
       p {
-        font-size: 16px;
+        font-size: 14px;
         margin: 2px;
       }
     }
-
+  
     svg{
       position: absolute;
       top: 5px;
@@ -118,5 +135,10 @@ li{
       }
     }
   }
+
+  li:hover{
+    box-shadow: 0 4px 4px 4px lightgrey;
+  }
+
 }
 
