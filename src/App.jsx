@@ -17,7 +17,8 @@ class App extends Component {
       loggedIn: false,
       session: null,
       endTime: null,
-      session_token: this.getSessionTokenFromCookies()
+      session_token: this.getSessionTokenFromCookies(),
+      level: 70
     };
   }
 
@@ -53,8 +54,15 @@ class App extends Component {
           break;
         case 'loginData':
           if (data.type === 'confirm') {
+            let endTime = (() => {
+              if (data.data.charge_session === null) return null;
+              else return data.data.charge_session.charge_end;
+            })();
             // if the server approves the token
-            this.setState({ loggedIn: true });
+            this.setState({
+              loggedIn: true,
+              endTime: endTime
+            });
             document.cookie = 'userSession=' + data.data.session_token.fulfillmentValue;
           } else {
             // if the server rejects the token
@@ -73,6 +81,7 @@ class App extends Component {
               endTime: data.data.endTime
             } 
           });
+          console.log("this is happening!");
           break;
 
         case 'session token': 
@@ -160,7 +169,7 @@ class App extends Component {
       type: 'logout',
       data: token
     }
-    this.setState({ loggedIn: false, session: null });
+    this.setState({ loggedIn: false, session: null, endTime: null, level: 70 });
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);
   } 
@@ -243,6 +252,7 @@ class App extends Component {
                     logout={this.logout.bind(this)} 
                     loggedIn={this.state.loggedIn}
                     endTime={this.state.endTime}
+                    level={this.state.level}
                   />
                   { !this.state.session && <SessionButton/> }
                 </div>

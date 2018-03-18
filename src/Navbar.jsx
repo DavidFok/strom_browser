@@ -57,25 +57,20 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    // if (this.state.endTime !== null) {
-    //   this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
-    //   this.timer = setInterval(() => this.timerCount(), 1000);
-    // }
-  }
 
+  }
 
   componentDidUpdate() {
     if (this.props.endTime !== this.state.endTime) {
-      this.setState({ endTime: this.props.endTime })
       if (this.props.endTime !== null) {
         console.log("route1");
-        this.setState({ endTime: this.props.endTime }, () => {
+        this.setState({ endTime: this.props.endTime, level: this.props.level }, () => {
           this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
           this.timer = setInterval(() => this.timerCount(), 1000);
         });
       } else {
         console.log("route2");
-        this.setState({ endTime: this.props.endTime });        
+        this.setState({ endTime: this.props.endTime, level: this.props.level });        
       }
     }
   }
@@ -158,14 +153,15 @@ class Navbar extends Component {
             <ul>
               <li>
                 <FaBolt className="info-icons"/>
-                <p>{this.state.level}%</p>
+                {this.state.level && <p>{this.state.level}%</p>}
               </li>
               <li>
                 <MdDirectionsCar className="car-icon" />
               </li>
               <li>
                 <MdAccessTime className="info-icons"/>
-                <p>{this.state.minuteString}:{this.state.secondString}</p>
+                
+                {this.state.secondString && <p>{this.state.minuteString}:{this.state.secondString}</p>}
               </li>
             </ul>
           </div>
