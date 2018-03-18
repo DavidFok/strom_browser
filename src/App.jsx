@@ -170,6 +170,7 @@ class App extends Component {
       data: token
     }
     this.setState({ loggedIn: false, session: null, endTime: null, level: 70 });
+    console.log("this is the state after logout: ", this.state);
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);
   } 

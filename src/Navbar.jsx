@@ -41,7 +41,7 @@ class Navbar extends Component {
   timerCount() {
     const start = moment.utc();
     const endTime = moment(this.state.endTime);
-    console.log('this is endTime from within timerCount:', endTime);
+    // console.log('this is endTime from within timerCount:', endTime);
     const minuteDiff = endTime.diff(start, 'minutes');
     const secondDiff = endTime.diff(start, 'seconds') % 60;
     let secondDiffString;
@@ -94,6 +94,9 @@ class Navbar extends Component {
     let token = document.cookie.split('=');
     this.props.logout(token[1]);
     document.cookie = "userSession=null";
+    clearInterval(this.chargeTime);
+    clearInterval(this.timer);
+    this.setState({ minuteString: "", secondString: "" });
   }
 
 
