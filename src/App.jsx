@@ -79,9 +79,11 @@ class App extends Component {
               status: data.type,
               msg: data.data.note,
               endTime: data.data.endTime
-            } 
+            },
+            endTime: data.data.endTime
           });
-          console.log("this is happening!");
+          console.log("this is happening!", data.data.endTime); 
+          console.log("this is happening state!", this.state.session.endTime);           
           break;
 
         case 'session token': 

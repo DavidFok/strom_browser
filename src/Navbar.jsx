@@ -41,7 +41,7 @@ class Navbar extends Component {
   timerCount() {
     const start = moment.utc();
     const endTime = moment(this.state.endTime);
-    console.log('this is endTime from within timerCount:', endTime);
+    // console.log('this is endTime from within timerCount:', endTime);
     const minuteDiff = endTime.diff(start, 'minutes');
     const secondDiff = endTime.diff(start, 'seconds') % 60;
     let secondDiffString;
@@ -61,6 +61,7 @@ class Navbar extends Component {
   }
 
   componentDidUpdate() {
+    console.log("component is updating!, endTime is : ", this.props.endTime);
     if (this.props.endTime !== this.state.endTime) {
       if (this.props.endTime !== null) {
         console.log("route1");
