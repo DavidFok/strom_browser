@@ -15,6 +15,7 @@ class App extends Component {
     this.state = { 
       loggedIn: false,
       session: null,
+      endTime: null,
       session_token: this.getSessionTokenFromCookies()
     };
   }
@@ -75,8 +76,12 @@ class App extends Component {
 
         case 'session token': 
           if (data.type === 'confirm') {
+            console.log("this is the data: ", data);
             // if the server has validated the session token
-            this.setState({ loggedIn: true });
+            this.setState({ 
+              loggedIn: true,
+              endTime: data.data.session.charge_end
+            });
           } else {
             // if the server has rejected the session token
             // clear cookies
@@ -219,9 +224,18 @@ class App extends Component {
             <Route path='/' exact render={() => {
               return(
                 <div>
-                  <Map parkades={this.state.parkades} getSpotData={this.getSpotData.bind(this)} spots={this.state.spots} />
-                  <Navbar filterHandicap={this.filterHandicap.bind(this)} logout={this.logout.bind(this)} loggedIn={this.state.loggedIn}/>
-                { !this.state.session && <SessionButton/> }
+                  <Map 
+                    parkades={this.state.parkades} 
+                    getSpotData={this.getSpotData.bind(this)} 
+                    spots={this.state.spots} 
+                  />
+                  <Navbar 
+                    filterHandicap={this.filterHandicap.bind(this)} 
+                    logout={this.logout.bind(this)} 
+                    loggedIn={this.state.loggedIn}
+                    endTime={this.state.endTime}
+                  />
+                  { !this.state.session && <SessionButton/> }
                 </div>
               );
             }}/>

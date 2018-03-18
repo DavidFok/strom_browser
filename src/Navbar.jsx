@@ -21,7 +21,7 @@ class Navbar extends Component {
       handicap: "grey",
       level: 70,
       rate: 5000,
-      endTime: moment().add(30, "minutes"),
+      endTime: null,
       minuteString: "",
       secondString: ""
     };
@@ -41,6 +41,7 @@ class Navbar extends Component {
   timerCount() {
     const start = moment.utc();
     const endTime = this.state.endTime;
+    console.log('this is endTime from within timerCount:', endTime); //////////////////
     const minuteDiff = endTime.diff(start, 'minutes');
     const secondDiff = endTime.diff(start, 'seconds') % 60;
     let secondDiffString;
@@ -58,6 +59,10 @@ class Navbar extends Component {
   componentDidMount() {
     this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
     this.timer = setInterval(() => this.timerCount(), 1000);
+
+    if (this.props.endTime !== this.state.endTime) {
+      this.setState({ endTime: this.props.endTime })
+    }
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
