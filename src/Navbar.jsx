@@ -53,10 +53,6 @@ class Navbar extends Component {
       minuteString: minuteDiff,
       secondString: secondDiffString
     })
-    // if (this.state.level === 100) {
-    //     clearInterval(this.timer);
-    //     return
-    // }
   }
 
   componentDidMount() {
