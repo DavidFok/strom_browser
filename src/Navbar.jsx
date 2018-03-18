@@ -95,6 +95,9 @@ class Navbar extends Component {
     let token = document.cookie.split('=');
     this.props.logout(token[1]);
     document.cookie = "userSession=null";
+    clearInterval(this.chargeTime);
+    clearInterval(this.timer);
+    this.setState({ minuteString: "", secondString: "" });
   }
 
 
