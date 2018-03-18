@@ -23,20 +23,20 @@ class ParkingSpotDisplay extends Component {
     })
   }
 
-  componentDidUpdate() {
-    console.log('component is updating!, endTime is : ', this.props.endTime);
-    if (this.props.endTime !== this.state.endTime) {
-    //   if (this.props.endTime !== null) {
-    //     console.log('route1');
-    //     this.setState({ endTime: this.props.endTime, level: this.props.level }, () => {
-    //       this.timer = setInterval(() => this.timerCount(), 1000);
-    //     });
-    //   } else {
-    //     console.log('route2');
-    //     this.setState({ endTime: this.props.endTime, level: this.props.level });        
-    //   }
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log('component is updating!, endTime is : ', this.props.endTime);
+  //   if (this.props.endTime !== this.state.endTime) {
+  //   //   if (this.props.endTime !== null) {
+  //   //     console.log('route1');
+  //   //     this.setState({ endTime: this.props.endTime, level: this.props.level }, () => {
+  //   //       this.timer = setInterval(() => this.timerCount(), 1000);
+  //   //     });
+  //   //   } else {
+  //   //     console.log('route2');
+  //   //     this.setState({ endTime: this.props.endTime, level: this.props.level });        
+  //   //   }
+  //   }
+  // }
 
   render() {
     const availability = (spot) => {
@@ -44,12 +44,10 @@ class ParkingSpotDisplay extends Component {
     else return (<p>Available</p>);
     };
     
+    let times = this.state.times;
+
     let spots = this.props.spots.map((spot) => {
-      let times = this.state.times;
       times[spot.spot_label] = spot.endTime;
-      // this.setState({
-      //   times: times
-      // });
       return (
         <li>
           <header>
