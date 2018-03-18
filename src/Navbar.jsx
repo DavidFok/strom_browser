@@ -9,6 +9,8 @@ import MdAccessible from 'react-icons/lib/md/accessible';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 import FaBolt from 'react-icons/lib/fa/bolt';
 import MdDirectionsCar from 'react-icons/lib/md/directions-car';
+const moment = require('moment');
+
 
 class Navbar extends Component {
 
@@ -16,8 +18,46 @@ class Navbar extends Component {
     super(props);
     this.state = {
       open: false,
-      handicap: "grey"
+      handicap: "grey",
+      level: 70,
+      rate: 5000,
+      endTime: moment().add(30, "minutes"),
+      minuteString: "",
+      secondString: ""
     };
+  }
+
+  countUpCharge() {
+    const increase = this.state.level + 1;
+    this.setState ({
+      level: increase
+    })
+    if (this.state.level === 100) {
+        clearInterval(this.chargeTime);
+        return
+    }
+  }
+
+  timerCount() {
+    const start = moment.utc();
+    const endTime = this.state.endTime;
+    const minuteDiff = endTime.diff(start, 'minutes');
+    const secondDiff = endTime.diff(start, 'seconds') % 60;
+    let secondDiffString;
+    if (secondDiff < 10) {
+      secondDiffString = `0${secondDiff}`;
+    } else {
+      secondDiffString = `${secondDiff}`;
+    }
+    this.setState ({
+      minuteString: minuteDiff,
+      secondString: secondDiffString
+    })
+  }
+
+  componentDidMount() {
+    this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
+    this.timer = setInterval(() => this.timerCount(), 1000);
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
@@ -40,7 +80,8 @@ class Navbar extends Component {
     this.props.logout(token[1]);
     document.cookie = "userSession=null";
   }
-  
+
+
   buttons = () => {
     if (this.props.loggedIn) {
       return (
@@ -97,14 +138,14 @@ class Navbar extends Component {
             <ul>
               <li>
                 <FaBolt className="info-icons"/>
-                <p>70%</p>
+                <p>{this.state.level}%</p>
               </li>
               <li>
                 <MdDirectionsCar className="car-icon" />
               </li>
               <li>
                 <MdAccessTime className="info-icons"/>
-                <p>19:58</p>
+                <p>{this.state.minuteString}:{this.state.secondString}</p>
               </li>
             </ul>
           </div>
