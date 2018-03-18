@@ -7,6 +7,7 @@ import SignUpPage from './SignUpPage.jsx';
 import LoginPage from './LoginPage.jsx';
 import SessionButton from './SessionButton.jsx';
 import SessionPage from './SessionPage.jsx';
+import { isNull } from 'util';
 
 // dummy comment.
 class App extends Component {
@@ -78,16 +79,24 @@ class App extends Component {
           if (data.type === 'confirm') {
             console.log("this is the data: ", data);
             // if the server has validated the session token
+            let endTime = (() => {
+              if (data.data.session === null) return null;
+              else return data.data.sessionData.charge_end;
+            })();
+
             this.setState({ 
               loggedIn: true,
-              endTime: data.data.session.charge_end
+              endTime: endTime
             });
           } else {
             // if the server has rejected the session token
             // clear cookies
             this.removeSessionTokenFromCookie();
             // set login state to false
-            this.setState({ loggedIn: false });
+            this.setState({ 
+              loggedIn: false,
+              endTime: null
+            });
           }
       }
     }
