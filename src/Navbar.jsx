@@ -28,14 +28,15 @@ class Navbar extends Component {
   }
 
   countUpCharge() {
-    const increase = this.state.level + 1;
+    let increase = this.state.level + 1;
+    if (this.state.level >= 100) {
+      clearInterval(this.chargeTime);
+      increase = 100;
+      return
+    }
     this.setState ({
       level: increase
     })
-    if (this.state.level === 100) {
-        clearInterval(this.chargeTime);
-        return
-    }
   }
 
   timerCount() {
@@ -50,6 +51,14 @@ class Navbar extends Component {
     } else {
       secondDiffString = `${secondDiff}`;
     }
+
+    if (minuteDiff <= 0){
+      clearInterval(this.timer);
+      minuteString = "";
+      secondString = "";
+      return;
+    }
+
     this.setState ({
       minuteString: minuteDiff,
       secondString: secondDiffString
