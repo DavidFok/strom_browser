@@ -42,6 +42,7 @@ class ParkingSpotDisplay extends Component {
     const availability = (spot) => {
       if (spot.lastSession.length > 0) {
         console.log("==========SPOT.LASTSESSION: ", spot.lastSession);
+        console.log("minutes left: ", minutesLeft);
         const endTimeStamp = spot.lastSession[0].charge_end;
         const minutesLeft = this.timerCount(endTimeStamp);
         if (minutesLeft > 0) {

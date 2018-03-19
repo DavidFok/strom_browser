@@ -54,8 +54,8 @@ class Navbar extends Component {
 
     if (minuteDiff <= 0){
       clearInterval(this.timer);
-      minuteString = "";
-      secondString = "";
+      let minuteString = "";
+      let secondString = "";
       return;
     }
 
