@@ -1,5 +1,5 @@
 html { 
-  background: url(../images/background.png) no-repeat center center fixed; 
+  background: url("../images/background.png") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -7,7 +7,7 @@ html {
 }
 
 .loading-background {
-  background: url(../images/map.png) no-repeat center center fixed; 
+  background: url("../images/map.png") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -23,7 +23,7 @@ html {
 }
 
 .strom-logo {
-  background: url(../images/strom.png); 
+  background: url("../images/strom.png"); 
   position: absolute;
 
   position: fixed;
