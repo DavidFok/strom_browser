@@ -21,11 +21,11 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
-
+  
 )((props) =>
   <GoogleMap
-    defaultZoom={window.screen.availWidth < 400 ? 14 : 15}
-    defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
+    defaultZoom={window.screen.availWidth < 400 ? 11.5 : 12.5}
+    defaultCenter={{ lat: 49.260119, lng: -123.149016 }}
     defaultOptions={defaultMapOptions}
   >
     {props.parkades.map(function(parkade) {
