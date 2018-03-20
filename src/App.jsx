@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ loading: false }), 5000);
+    // setTimeout(() => this.setState({ loading: false }), 5000);
     this.socket = new WebSocket('ws://localhost:3001/');
     this.socket.onopen = (event) => {
       console.log('connected to ws-server');
@@ -225,12 +225,12 @@ class App extends Component {
   }
   
   render() {
-    const { loading } = this.state;
-    if (loading) {
-      return (
-        <Loading />
-      );
-    }
+    // const { loading } = this.state;
+    // if (loading) {
+    //   return (
+    //     <Loading />
+    //   );
+    // }
     return (
         <Router>
           <Switch>
