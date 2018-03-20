@@ -141,16 +141,12 @@ class Navbar extends Component {
 
     return (
       <div>
-        <nav className="navbar">
-          <div className="container">
-            <h1 className="icon-menu" onClick={this.handleToggle} > <MdMenu /> </h1>
-            <p className="navbar-text"> Search here </p>
-            <h1 className="icon-search"> <MdSearch /> </h1>
-          </div>
-          <FloatingActionButton className="handicap-button" backgroundColor={this.state.handicap} onClick={this.handicapColor}>
-              <MdAccessible />
-          </FloatingActionButton>
-        </nav>
+        <h1 className="icon-menu" onClick={this.handleToggle} > <MdMenu /> </h1>
+        <h1 className="icon-search"> <MdSearch /> </h1>
+        
+        <FloatingActionButton className="handicap-button" backgroundColor={this.state.handicap} onClick={this.handicapColor}>
+            <MdAccessible />
+        </FloatingActionButton>
            
         <Drawer
           docked={false}
