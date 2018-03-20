@@ -11,12 +11,14 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 const style = {
   margin: 12,
+  block: {
+    maxWidth: 350 
+  },
   text: {
     color: 'rgba(0,0,0,0.8)',
   },
   form: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    tranparency: .8,
     border: '1px solid lightgrey',
     borderRadius: '5px',
     boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.3)',
@@ -81,11 +83,6 @@ class SessionPage extends React.Component {
   };
   
   render() {
-    const style = {
-      margin: 12,
-      block: { maxWidth: 350 }
-    };
-
     const actions = [
       <FlatButton
         label="Dismiss"
@@ -117,6 +114,7 @@ class SessionPage extends React.Component {
                       value={this.state.value}
                       onChange={this.onChange.bind(this)}
                       errorText={this.state.errMsg}
+                      hintStyle={style.text}
                     />
                   </div>
                   <RaisedButton onClick={this.processReq.bind(this)} label="Submit" style={style} />
