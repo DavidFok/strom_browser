@@ -6,6 +6,7 @@ import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 import ParkadeInfo from './components/ParkadeInfo.jsx';
+import mapStyle from './map-styles.json'
 const _ = require("lodash");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
@@ -13,6 +14,7 @@ const { MarkerClusterer } = require("react-google-maps/lib/components/addons/Mar
 const defaultMapOptions = {
   disableDefaultUI: true,
   zoomControl: true,
+  styles: mapStyle
 };
 
 
@@ -142,7 +144,8 @@ const MyMapComponent = compose(
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
-      gridSize={60}
+      gridSize={80}
+      defaultMinimumClusterSize={6}
     >
     {props.parkades.map(function(parkade) {
       return (
