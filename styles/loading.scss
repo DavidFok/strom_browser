@@ -56,8 +56,15 @@ html {
 }
 
 .fade-out {
-  animation: fadeOut 5s;
+  animation: fadeOut 2s;
+  // animation-timing-function: cubic-bezier(1,.12,.91,.26);
+  animation-timing-function: cubic-bezier(1,.11,.85,-0.13);  
 }
+
+// .zoom-out {
+//   animation: zoomOut 3s;
+// }
+
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -66,6 +73,15 @@ html {
     opacity: 0;
   }
 }
+
+// @keyframes zoomOut {
+//   from {
+//     transform: scale(1);
+//   }
+//   to {
+//     transform: scale(0.7);
+//   }
+// }
 
 // .black-img {
 //   position: fixed;
