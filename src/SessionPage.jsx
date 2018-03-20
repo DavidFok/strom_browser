@@ -9,6 +9,20 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
+const style = {
+  margin: 12,
+  text: {
+    color: 'rgba(0,0,0,0.8)',
+  },
+  form: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    tranparency: .8,
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.3)',
+  }
+};
+
 class SessionPage extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +107,7 @@ class SessionPage extends React.Component {
               <Link to="/"> <MdClose className="close-button" color="whitesmoke" /> </Link>
             </nav>
         
-            <Card className="session-card">
+            <Card className="session-card" style={style.form}>
               <div className="session-container">
                 <p>Enter station number to begin charging</p>
                   <div className="session-input">
@@ -105,7 +119,7 @@ class SessionPage extends React.Component {
                       errorText={this.state.errMsg}
                     />
                   </div>
-                  <RaisedButton onClick={this.processReq.bind(this)} label="Submit" primary={true} style={style} />
+                  <RaisedButton onClick={this.processReq.bind(this)} label="Submit" style={style} />
               </div>
               {/* The success modal */}
               <div>
