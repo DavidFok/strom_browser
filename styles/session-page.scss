@@ -5,7 +5,6 @@
   text-align: center;
   font-size: 15px;
   font-family: 'Open Sans', sans-serif;
-  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .session-container .session-input {
@@ -23,23 +22,34 @@
   margin: 200px auto;
   padding: 20px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 576px) {
-  .session-card {
-    margin: 0px auto;
-    margin-top: 100px auto;
-    padding: 0px;
-  }
   .session-container {
     font-size: 15px;
-    margin: 0px;
-    margin-top: 250px;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    text-align: center;
+    margin: auto;
   }
   .session-container .session-input {
     font-size: 5rem;
+    justify-content: center;
+    display: flex;
+  }  
+  .session-container .session-input svg {
+    width: 10%;
+    margin-right: 5%;
+    margin-top: 10px;
+  }
+  .session-card {
+    margin: 0px auto;
+    margin-top: 90px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: 100px;
+    text-align: center;
   }
 }

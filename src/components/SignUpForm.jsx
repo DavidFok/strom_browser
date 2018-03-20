@@ -16,7 +16,17 @@ const style = {
   toggle: {
     marginBottom: 16,
     fontSize: 18,
+    color: 'rgba(0,0,0,0.8)',
   },
+  form: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.3)',
+  },
+  text: {
+    color: 'rgba(0,0,0,0.8)',
+  }
 };
 
 class SignUpForm extends Component{
@@ -32,7 +42,7 @@ class SignUpForm extends Component{
           <Link to="/"> <MdClose className="close-button" color="whitesmoke" /> </Link>
         </nav>
 
-        <Card className="signup_form">
+        <Card className="signup_form" style={style.form}>
 
         <h1>Sign Up</h1>
 
@@ -42,6 +52,7 @@ class SignUpForm extends Component{
           value={this.props.user.first_name}
           onChange={this.props.onChange}
           errorText={this.props.errorText.first_name}
+          hintStyle={style.text}
           /><br />
           <br />
 
@@ -51,6 +62,7 @@ class SignUpForm extends Component{
           value={this.props.user.last_name}
           onChange={this.props.onChange}
           errorText={this.props.errorText.last_name}
+          hintStyle={style.text}
           /><br />
           <br />
 
@@ -114,6 +126,7 @@ class SignUpForm extends Component{
           value={this.props.user.phone_number}
           onChange={this.props.onChange}
           errorText={this.props.errorText.phone_number}
+          hintStyle={style.text}
           /><br />
           <br />
 
@@ -123,6 +136,7 @@ class SignUpForm extends Component{
           value={this.props.user.email}
           onChange={this.props.onChange}
           errorText={this.props.errorText.email}
+          hintStyle={style.text}
           /><br />
           <br />
 
@@ -132,6 +146,7 @@ class SignUpForm extends Component{
           value={this.props.user.password}
           onChange={this.props.onChange}
           errorText={this.props.errorText.password}
+          hintStyle={style.text}
           type="password"
           /><br />
           <br />
@@ -142,6 +157,7 @@ class SignUpForm extends Component{
           value={this.props.user.password_confirmation}
           onChange={this.props.onChange}
           errorText={this.props.errorText.password_confirmation}
+          hintStyle={style.text}
           type="password"
           /><br />
           <br />
@@ -154,7 +170,7 @@ class SignUpForm extends Component{
             onToggle={this.props.onToggle}
             />
           </div>
-          <RaisedButton onClick={this.props.onSubmit} label="Submit" primary={true} style={style} />
+          <RaisedButton onClick={this.props.onSubmit} label="Submit" style={style} />
         </Card>
       </div>
     );
