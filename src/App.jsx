@@ -7,6 +7,7 @@ import SignUpPage from './SignUpPage.jsx';
 import LoginPage from './LoginPage.jsx';
 import SessionButton from './SessionButton.jsx';
 import SessionPage from './SessionPage.jsx';
+import Loading from './Loading.jsx';
 import { isNull } from 'util';
 
 // dummy comment.
@@ -18,11 +19,13 @@ class App extends Component {
       session: null,
       endTime: null,
       session_token: this.getSessionTokenFromCookies(),
-      level: 70
+      level: 70,
+      loading: true
     };
   }
 
   componentDidMount() {
+    // setTimeout(() => this.setState({ loading: false }), 5000);
     this.socket = new WebSocket('ws://localhost:3001/');
     this.socket.onopen = (event) => {
       console.log('connected to ws-server');
@@ -48,7 +51,7 @@ class App extends Component {
         case 'spots':
           if (data.type === 'confirm') {
             this.setState({ spots: data.data });
-            console.log("data.data: ", data.data);
+            console.log('data.data: ', data.data);
           } else {
             console.log('error in receiving spots: ', data.data);
           }
@@ -83,13 +86,13 @@ class App extends Component {
             },
             endTime: data.data.endTime
           });
-          console.log("this is happening!", data.data.endTime); 
-          console.log("this is happening state!", this.state.session.endTime);           
+          console.log('this is happening!', data.data.endTime); 
+          console.log('this is happening state!', this.state.session.endTime);           
           break;
 
         case 'session token': 
           if (data.type === 'confirm') {
-            console.log("this is the data: ", data);
+            console.log('this is the data: ', data);
             // if the server has validated the session token
             let endTime = (() => {
               if (data.data.session === null) return null;
@@ -173,7 +176,7 @@ class App extends Component {
       data: token
     }
     this.setState({ loggedIn: false, session: null, endTime: null, level: 70 });
-    console.log("this is the state after logout: ", this.state);
+    console.log('this is the state after logout: ', this.state);
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);
   } 
@@ -222,6 +225,12 @@ class App extends Component {
   }
   
   render() {
+    // const { loading } = this.state;
+    // if (loading) {
+    //   return (
+    //     <Loading />
+    //   );
+    // }
     return (
         <Router>
           <Switch>

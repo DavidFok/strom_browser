@@ -14,6 +14,15 @@ module.exports = {
   },
   module: {
     rules: [
+      { 
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ] 
+      },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
