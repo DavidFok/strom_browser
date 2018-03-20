@@ -95,11 +95,11 @@ class SessionPage extends React.Component {
         
             <Card className="session-card">
               <div className="session-container">
-                <p>Enter a charing station number to begin charging</p>
+                <p>Enter station number to begin charging</p>
                   <div className="session-input">
                     <MdLocationOn />
                     <TextField
-                      hintText="Enter a charging station number"
+                      hintText="Enter station number"
                       value={this.state.value}
                       onChange={this.onChange.bind(this)}
                       errorText={this.state.errMsg}
