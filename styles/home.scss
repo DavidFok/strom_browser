@@ -53,7 +53,7 @@ body {
 }
 
 .session-button {
-  background: rgb(33, 150, 243);
+  background: rgba(0, 0, 32, 0.7);
   max-width: 250px;
   height: 10rem;
   left: 0;
@@ -68,7 +68,7 @@ body {
 }
 
 .session-button:hover {
-  background: rgb(20, 180, 255);
+  background: rgba(0, 0, 32, 1);
 }
 
 .session-button .container {
@@ -99,7 +99,7 @@ body {
   box-shadow: 0 4px 2px -2px lightgrey;
   padding: 10px 5px;
   font-size: 15px;
-  background: rgb(33, 150, 243);
+  background: rgba(0,0,32,0.7);
   ul {
     display: flex;
     flex-wrap: nowrap;

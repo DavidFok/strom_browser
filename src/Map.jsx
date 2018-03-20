@@ -6,15 +6,18 @@ import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 import ParkadeInfo from './components/ParkadeInfo.jsx';
-const _ = require("lodash");
-const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+const _ = require('lodash');
+const { SearchBox } = require('react-google-maps/lib/components/places/SearchBox');
+const { MarkerClusterer } = require('react-google-maps/lib/components/addons/MarkerClusterer');
 
 const defaultMapOptions = {
   disableDefaultUI: true,
   zoomControl: true,
 };
 
+const style = {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+}
 
 // dynamically creating styles based on window size
 const windowWidth = window.innerWidth;
@@ -34,21 +37,21 @@ if (windowWidth < breakPoint) {
 }
 
 const searchBoxStyle = {
-  boxSizing: `border-box`,
-  border: `1px solid transparent`,
+  boxSizing: 'border-box',
+  border: '1px solid transparent',
   width: `${searchBoxWidth}px`,
   marginTop: `${margin}px`,
   marginLeft: `${marginLeft}px`,
   marginRight: `${margin}px`,
-  padding: `10px 50px 10px 50px`,
-  borderRadius: `3px`,
-  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-  fontSize: `16px`,
-  outline: `none`,
-  textOverflow: `ellipses`,
+  padding: '10px 50px 10px 50px',
+  borderRadius: '3px',
+  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+  fontSize: '16px',
+  outline: 'none',
+  textOverflow: 'ellipses',
 };
 
-console.log("width: ", searchBoxStyle.width);
+console.log('width: ', searchBoxStyle.width);
 const MyMapComponent = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
@@ -242,6 +245,7 @@ class Map extends Component {
             openSecondary={true}
             open={this.state.infoOpen}
             onRequestChange={(open) => this.setState({infoOpen: open})}
+            containerStyle={style}
         >
         { this.state.currentParkade &&
           <div className="parkade-info">
