@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { compose, withProps, withHandlers, lifecycle } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+import { compose, withProps, lifecycle, withHandlers } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 import ParkadeInfo from './components/ParkadeInfo.jsx';
 const _ = require("lodash");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
+const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 const defaultMapOptions = {
   disableDefaultUI: true,
@@ -54,6 +55,11 @@ const MyMapComponent = compose(
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '100vh' }} />,
     mapElement: <div style={{ height: '100%' }} />,
+  }),
+  withHandlers({
+    onMarkerClustererClick: () => (markerClusterer) => {
+      const clickedMarkers = markerClusterer.getMarkers()
+    }
   }),
   lifecycle({
     componentWillMount() {
@@ -132,6 +138,12 @@ const MyMapComponent = compose(
     </div>
     </SearchBox>
 
+    <MarkerClusterer
+      onClick={props.onMarkerClustererClick}
+      averageCenter
+      enableRetinaIcons
+      gridSize={60}
+    >
     {props.parkades.map(function(parkade) {
       return (
         <Marker 
@@ -142,6 +154,7 @@ const MyMapComponent = compose(
         />
       );
     })}
+    </MarkerClusterer>
   </GoogleMap>
 )
 
