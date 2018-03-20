@@ -2,12 +2,6 @@ html {
   font-size: 5px;
 }
 
-@media (min-width: 576px) {
-  html {
-    font-size: 7px;
-  }
-}
-
 h1 {
   color: rgba(0, 0, 0, 0.87);
   font-size: 25px;
@@ -27,41 +21,35 @@ body {
   height: 100vh;
 }
 
-.navbar {
-  background: white;
-  max-width: 350px;
-  height: 7rem;
-  left: 0;
-  padding: 0 10px;
+.handicap-button {
   position: fixed;
-  right: 0;
-  top: 0;
-  color: white;
-  margin: 1rem 1rem 0rem 1rem;
-  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
-  border-radius: 2px;
+  margin: 0rem 3rem 0rem 0rem;
+  font-size: 30px;
+  top: 100px;
+  left: 20px;
+  z-index: 50;
 }
 
-@media (max-width: 576px) {
-  .navbar {
-    margin: 4rem 2rem 0rem 2rem;
-    height: 8rem;
-  }
-  .navbar-text {
-    font-size: 10rem;
-  }
+.icon-menu {
+  position: fixed;
+  top: -5px;
+  left: 20px;
+  z-index: 50;
+  font-size: 30px;
+  color: grey;
 }
 
-.navbar .container {
-  position: relative;
-  bottom: 1.7rem;
-  display: flex;
-  justify-content: space-between;
+.icon-menu:hover {
+  cursor: pointer;
 }
 
-.navbar .handicap-button {
-  margin: 0rem 2rem 0rem 0rem;
-  font-size: 35px;
+.icon-search {
+  position: fixed;
+  top: -5px;
+  right: 30px;
+  z-index: 50;
+  font-size: 30px;
+  color: grey;
 }
 
 .session-button {
@@ -98,20 +86,6 @@ body {
   width: 60%;
 }
 
-.icon-menu {
-  color: grey;
-  font-size: 3.5rem;
-}
-
-.icon-menu:hover {
-  cursor: pointer;
-}
-
-.icon-search {
-  color: grey;
-  font-size: 3.5rem;
-}
-
 .navbar-text {
   color: grey;
   font-family: 'Open Sans', sans-serif;
@@ -145,4 +119,22 @@ body {
 
 .info-icons {
   font-size: 25px;
+}
+
+@media screen and (min-width: 576px) {
+  html {
+    font-size: 7px;
+  }
+
+  .icon-menu {
+    top: 5px;
+    left: 30px;
+    font-size: 30px;
+  }
+
+  .icon-search {
+    top: 5px;
+    left: 430px;
+    font-size: 30px;
+  }
 }

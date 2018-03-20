@@ -1,17 +1,53 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { compose, withProps, withHandlers } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { compose, withProps, withHandlers, lifecycle } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
 import ParkingSpotDisplay from './components/ParkingSpot.jsx';
 import ParkadeInfo from './components/ParkadeInfo.jsx';
+const _ = require("lodash");
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 
 const defaultMapOptions = {
   disableDefaultUI: true,
   zoomControl: true,
 };
 
+
+// dynamically creating styles based on window size
+const windowWidth = window.innerWidth;
+let searchBoxWidth;
+let margin;
+let marginLeft;
+let breakPoint = 500;
+
+if (windowWidth < breakPoint) {
+  searchBoxWidth = windowWidth * 0.9;
+  marginLeft = 15;
+  margin = 15;
+} else {
+  searchBoxWidth = breakPoint * 0.9;
+  marginLeft = 25;
+  margin = 25;
+}
+
+const searchBoxStyle = {
+  boxSizing: `border-box`,
+  border: `1px solid transparent`,
+  width: `${searchBoxWidth}px`,
+  marginTop: `${margin}px`,
+  marginLeft: `${marginLeft}px`,
+  marginRight: `${margin}px`,
+  padding: `10px 50px 10px 50px`,
+  borderRadius: `3px`,
+  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+  fontSize: `16px`,
+  outline: `none`,
+  textOverflow: `ellipses`,
+};
+
+console.log("width: ", searchBoxStyle.width);
 const MyMapComponent = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
@@ -19,15 +55,83 @@ const MyMapComponent = compose(
     containerElement: <div style={{ height: '100vh' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   }),
+  lifecycle({
+    componentWillMount() {
+      const refs = {}
+
+      this.setState({
+        bounds: null,
+        center: {
+          lat: 49.26658, lng: -123.245233
+        },
+        markers: [],
+        onMapMounted: ref => {
+          refs.map = ref;
+        },
+        // onBoundsChanged: () => {
+        //   this.setState({
+        //     bounds: refs.map.getBounds(),
+        //     center: refs.map.getCenter(),
+        //   })
+        // },
+     
+        onSearchBoxMounted: ref => {
+          refs.searchBox = ref;
+        },
+        onPlacesChanged: () => {
+          const places = refs.searchBox.getPlaces();
+          const bounds = new google.maps.LatLngBounds();
+
+          places.forEach(place => {
+            if (place.geometry.viewport) {
+              bounds.union(place.geometry.viewport)
+            } else {
+              bounds.extend(place.geometry.location)
+            }
+          });
+          const nextMarkers = places.map(place => ({
+            position: place.geometry.location,
+          }));
+          const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+
+          this.setState({
+            center: nextCenter,
+            markers: nextMarkers,
+          });
+          // refs.map.fitBounds(bounds);
+        },
+      })
+    },
+  }),
   withScriptjs,
   withGoogleMap
-
 )((props) =>
   <GoogleMap
+    ref={props.onMapMounted}
     defaultZoom={window.screen.availWidth < 400 ? 14 : 15}
-    defaultCenter={{ lat: 49.26658, lng: -123.245233 }}
+    // defaultCenter={{  }}
     defaultOptions={defaultMapOptions}
+    center={props.center}
+    onBoundsChanged={props.onBoundsChanged}
   >
+    <SearchBox
+      ref={props.onSearchBoxMounted}
+      bounds={props.bounds}
+      controlPosition={google.maps.ControlPosition.TOP_LEFT}
+      onPlacesChanged={props.onPlacesChanged}
+      className="navbar"
+    > 
+    <div
+      className="container"
+    >
+      <input
+        type="text"
+        placeholder="Enter a location"
+        style={searchBoxStyle}
+      />
+    </div>
+    </SearchBox>
+
     {props.parkades.map(function(parkade) {
       return (
         <Marker 
