@@ -92,7 +92,7 @@ class Navbar extends Component {
     this.props.filterHandicap();
     let color = this.state.handicap;
     if (color === "grey") {
-      this.setState({handicap: "rgb(0, 188, 212"})
+      this.setState({handicap: "darkblue"})
     } else {
       this.setState({handicap: "grey"})
     }
