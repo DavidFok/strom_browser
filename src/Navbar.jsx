@@ -11,6 +11,9 @@ import FaBolt from 'react-icons/lib/fa/bolt';
 import MdDirectionsCar from 'react-icons/lib/md/directions-car';
 const moment = require('moment');
 
+const style = {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+}
 
 class Navbar extends Component {
 
@@ -89,7 +92,7 @@ class Navbar extends Component {
     this.props.filterHandicap();
     let color = this.state.handicap;
     if (color === "grey") {
-      this.setState({handicap: "rgb(0, 188, 212"})
+      this.setState({handicap: "darkblue"})
     } else {
       this.setState({handicap: "grey"})
     }
@@ -153,6 +156,8 @@ class Navbar extends Component {
           width={250}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open: open})}
+          className="user-drawer"
+          containerStyle={style}
         >
           <div className="session-info">
             <ul>
