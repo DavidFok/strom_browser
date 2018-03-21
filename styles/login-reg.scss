@@ -37,7 +37,7 @@
 @media (max-width: 576px) {
   .signup_form {
     margin: 0px auto;
-    margin-top: 90px;
+    margin-top: 82px;
     position: absolute;
     bottom: 0;
     top: 0;
@@ -46,7 +46,7 @@
   }
   .login_form {
     margin: 0px auto;
-    margin-top: 90px;
+    margin-top: 82px;
     padding-bottom: 100%;
     padding-top: 100px;
     position: absolute;
@@ -57,5 +57,8 @@
   }
   .login-reg-nav p {
     font-size: 4rem;
+  }
+  .login-reg-nav {
+    box-shadow: none;
   }
 }
