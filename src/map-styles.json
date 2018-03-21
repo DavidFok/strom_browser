@@ -91,5 +91,12 @@
         "color": "#4a7387"
       }
     ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
   }
 ]

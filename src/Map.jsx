@@ -53,6 +53,7 @@ const searchBoxStyle = {
   textOverflow: 'ellipses',
 };
 
+
 console.log('width: ', searchBoxStyle.width);
 const MyMapComponent = compose(
   withProps({
