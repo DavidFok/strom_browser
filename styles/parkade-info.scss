@@ -89,6 +89,7 @@ li{
     box-shadow: 0 4px 2px -2px lightgrey;
     transition: box-shadow 0.3s ease;
     
+    
     div {
       width: 50%;
     }
@@ -131,6 +132,10 @@ li{
         }
       }
     }
+  }
+
+  li.unavailable header{
+    background-color: rgba(0,0,0,0.9);
   }
   
   li:hover{
