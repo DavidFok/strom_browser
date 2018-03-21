@@ -19,7 +19,7 @@ class App extends Component {
       session: null,
       endTime: null,
       session_token: this.getSessionTokenFromCookies(),
-      level: 70,
+      level: null,
       loading: true
     };
   }
@@ -81,7 +81,8 @@ class App extends Component {
             session: {
               status: data.type,
               msg: data.data.note,
-              endTime: data.data.endTime
+              endTime: data.data.endTime,
+              level: 70
             },
             endTime: data.data.endTime
           });
@@ -174,7 +175,7 @@ class App extends Component {
       type: 'logout',
       data: token
     }
-    this.setState({ loggedIn: false, session: null, endTime: null, level: 70 });
+    this.setState({ loggedIn: false, session: null, endTime: null, level: null });
     console.log('this is the state after logout: ', this.state);
     this.socket.send(JSON.stringify(outMsgVcle));
     console.log('outbound message vehicle: ', outMsgVcle);

@@ -22,7 +22,7 @@ class Navbar extends Component {
     this.state = {
       open: false,
       handicap: "grey",
-      level: 70,
+      level: null,
       rate: 5000,
       endTime: null,
       minuteString: "",
@@ -73,7 +73,8 @@ class Navbar extends Component {
     if (this.props.endTime !== this.state.endTime) {
       if (this.props.endTime !== null) {
         console.log("route1");
-        this.setState({ endTime: this.props.endTime, level: this.props.level }, () => {
+        this.setState({ endTime: this.props.endTime, level: 70 }, () => {
+          console.log("this.props.level = ", this.props.level);
           this.chargeTime = setInterval(() => this.countUpCharge(), this.state.rate);
           this.timer = setInterval(() => this.timerCount(), 1000);
         });
@@ -105,7 +106,7 @@ class Navbar extends Component {
     document.cookie = "userSession=null";
     clearInterval(this.chargeTime);
     clearInterval(this.timer);
-    this.setState({ minuteString: "", secondString: "" });
+    this.setState({ minuteString: "", secondString: "", level: null });
   }
 
 
