@@ -116,7 +116,7 @@ const MyMapComponent = compose(
           this.setState({
             center: nextCenter,
             markers: nextMarkers,
-            zoom: 18
+            zoom: 17
           });
         },
       })
