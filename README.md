@@ -5,6 +5,7 @@ A real-time electric vehicle charging point search app.
 Find charging points near your destination. See when one will become available. Pay for your charge and receive notifications when your charge is complete.
 We ease EV drivers 'low-battery' anxiety for a seamless charging experience.
 
+
 ### Features
 * The charging station icons indicate the location of the parkades. Their color indicates the current usage level of each parkade, with green indicating less than 50%, 50% - 75% for orange, and over 75% for red. 
 * The cluster with the number on it indicates the number of parkades in that area. Upon magnification, the cluster will separate into separate parkades.
