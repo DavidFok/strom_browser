@@ -2,22 +2,30 @@ PROJECT STROM
 =====================
 
 A real-time electric vehicle charging point search app. 
-Find charging points near your destination. See when one will become available. Pay for your charge and receive notifications when your charge is complete.
+Find charging points near your destination. See when one will become available. Pay for your charge and receive notifications when your charge is complete. 
 We ease EV drivers 'low-battery' anxiety for a seamless charging experience.
 
+!["Screenshot of startup page on desktop"](https://github.com/cgrowntree/strom_browser/blob/master/docs/Strom_startup.png)
 
 ### Features
-* The charging station icons indicate the location of the parkades. Their color indicates the current usage level of each parkade, with green indicating less than 50%, 50% - 75% for orange, and over 75% for red. 
-* The cluster with the number on it indicates the number of parkades in that area. Upon magnification, the cluster will separate into separate parkades.
 * Fully responsive, streamlined for use on mobile and desktop.
+* The charging station icons indicate the location of the parkades. Their color indicates the current usage level of each parkade, with green indicating less than 50%, 50% - 75% for orange, and over 75% for red. 
+* Clusters with the numbers marked indicate the number of parkades in that area. Upon magnification, the cluster will separate into separate parkades.
 * To find chargers near your intended destination, you can search your destination into the search bar.
+!["Using search bar on mobile"](https://github.com/cgrowntree/strom_browser/blob/master/docs/usingSearchBarMobile.png)
+
 * The handicap sign can be toggled to view only handicapped parking spots.
 * To view information about the parkade, press a charging icon to bring up the information on each parking spot
 * The availability of each parking spot is indicated, with real time updates via websockets, along with the time left until each spot becomes available.
+!["Parking spot information display with real time updates"](https://github.com/cgrowntree/strom_browser/blob/master/docs/parkadeInfoDisplay.png)
+
 * To start a charging session, first signup by pressing the hamburger icon next to the search bar and selecting the `Sign Up` button. 
 * Then, press the `Start Session` button on the bottom of the screen, then enter the number of the charger you wish to use.
+!["Starting a session"](https://github.com/cgrowntree/strom_browser/blob/master/docs/startingSession.png)
 * Once you have started a session, you will receive SMS notifications; one when there are five minutes left in your session, and another when your session is complete. (For demonstration purposes, Strom is currently set up to send SMS messages 15 and 20 seconds after starting a session.)
 * Now that your charging session has begun, you can see the charge on your vehicle and the time left in your session by pressing the hamburger icon next to the search bar.
+!["Charging information display"](https://github.com/cgrowntree/strom_browser/blob/master/docs/chargingInfoDisplay.png)
+
 
 ### Installation
 
