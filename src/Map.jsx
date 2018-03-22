@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { compose, withProps, lifecycle, withHandlers } from 'recompose';
+import { compose, withProps, lifecycle, withHandlers, withState } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MdClose from 'react-icons/lib/md/close';
 import Drawer from 'material-ui/Drawer';
@@ -62,10 +62,26 @@ const MyMapComponent = compose(
     containerElement: <div style={{ height: '100vh' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   }),
-  withHandlers({
-    onMarkerClustererClick: () => (markerClusterer) => {
-      const clickedMarkers = markerClusterer.getMarkers()
+  withState('zoom', 'onZoomChange', window.screen.availWidth < 400 ? 11.5 : 12.76),
+  withHandlers(() => {
+    const refs = {
+      map: undefined
+    };
+
+    return {
+      onMarkerClustererClick: () => (markerClusterer) => {
+        const clickedMarkers = markerClusterer.getMarkers()  
+      },
+
+      onMapMounted: () => ref => {
+        refs.map = ref
+      },
+
+      onZoomChanged: ({ onZoomChange }) => () => {
+        onZoomChange(refs.map.getZoom())
+      }
     }
+
   }),
   lifecycle({
     componentWillMount() {
@@ -77,15 +93,6 @@ const MyMapComponent = compose(
           lat: 49.2799, lng: -123.1121
         },
         markers: [],
-        onMapMounted: ref => {
-          refs.map = ref;
-        },
-        // onBoundsChanged: () => {
-        //   this.setState({
-        //     bounds: refs.map.getBounds(),
-        //     center: refs.map.getCenter(),
-        //   })
-        // },
      
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
@@ -109,8 +116,8 @@ const MyMapComponent = compose(
           this.setState({
             center: nextCenter,
             markers: nextMarkers,
+            zoom: 18
           });
-          // refs.map.fitBounds(bounds);
         },
       })
     },
@@ -120,8 +127,11 @@ const MyMapComponent = compose(
   
 )((props) =>
   <GoogleMap
-    defaultZoom={window.screen.availWidth < 400 ? 11.5 : 12.76}
+    // defaultZoom={window.screen.availWidth < 400 ? 11.5 : 12.76}
     // defaultCenter={{ lat: 40.261980, lng: -123.000000 }}
+    zoom={props.zoom}
+    ref={props.onMapMounted}
+    onZoomChanged={props.onZoomChanged}
     defaultOptions={defaultMapOptions}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
